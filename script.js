@@ -62,6 +62,18 @@ var models = [
         rotation: '0 180 0',
         info: 'Dragonite, Lv. 99, HP 150/150',
     },
+	{
+        url: 'D:/昊翰/成大三/專題/location-based-ar-tutorial/location-based-ar-tutoria/assets/dragonite/scene.gltf',
+        scale: '0.08 0.08 0.08',
+        rotation: '0 180 0',
+        info: 'Bird, Lv. 999, HP 1500/1500',
+    },
+	{
+        url: 'D:/昊翰/成大三/專題/location-based-ar-tutorial/location-based-ar-tutoria/assets/dragonite/scene.gltf',
+        scale: '0.08 0.08 0.08',
+        rotation: '0 180 0',
+        info: 'Snake, Lv. 1, HP 1/10',
+    },
 ];
 
 var modelIndex = 0;
