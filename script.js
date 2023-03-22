@@ -21,6 +21,21 @@ function staticLoadPlaces() {
                 lat: 22.998652,
                 lng: 120.218399,
             }
+			name: 'Magnemite3',
+            location: {
+                lat: 22.9987477,
+                lng: 120.2190629,
+            }
+			name: 'Magnemite4',
+            location: {
+                lat: 22.9986245,
+                lng: 120.2199156,
+            }
+			name: 'Magnemite5',
+            location: {
+                lat: 22.998800, 
+                lng: 120.219826,
+            }
         },
     ];
 }
