@@ -70,32 +70,32 @@ function staticLoadPlaces() {
 
 var models = [
     {
-        url: 'D:/昊翰/成大三/專題/location-based-ar-tutorial/location-based-ar-tutoria/assets/magnemite/scene.gltf',
+        url: './assets/magnemite/scene.gltf',
         scale: '0.5 0.5 0.5',
         info: 'Magnemite, Lv. 5, HP 10/10',
         rotation: '0 180 0',
     },
     {
-        url: 'D:/昊翰/成大三/專題/location-based-ar-tutorial/location-based-ar-tutoria/assets/articuno/scene.gltf',
+        url: './assets/articuno/scene.gltf',
         scale: '0.2 0.2 0.2',
         rotation: '0 180 0',
         info: 'Articuno, Lv. 80, HP 100/100',
     },
     {
-        url: 'D:/昊翰/成大三/專題/location-based-ar-tutorial/location-based-ar-tutoria/assets/dragonite/scene.gltf',
+        url: './assets/dragonite/scene.gltf',
         scale: '0.08 0.08 0.08',
         rotation: '0 180 0',
         info: 'Dragonite, Lv. 99, HP 150/150',
     },
 	{
-        url: 'D:/昊翰/成大三/專題/location-based-ar-tutorial/location-based-ar-tutoria/assets/dragonite/scene.gltf',
-        scale: '0.08 0.08 0.08',
+        url: './assets/dragonite/scene.gltf',
+        scale: '0.06 0.06 0.06',
         rotation: '0 180 0',
         info: 'Bird, Lv. 999, HP 1500/1500',
     },
 	{
-        url: 'D:/昊翰/成大三/專題/location-based-ar-tutorial/location-based-ar-tutoria/assets/dragonite/scene.gltf',
-        scale: '0.08 0.08 0.08',
+        url: './assets/dragonite/scene.gltf',
+        scale: '0.8 0.8 0.8',
         rotation: '0 180 0',
         info: 'Snake, Lv. 1, HP 1/10',
     },
