@@ -53,8 +53,8 @@ function staticLoadPlaces() {
 		{
 			name: 'Pokèmon6',
             location: {
-                lat: 23.008256, 
-                lng: 120.218121,
+                lat: 22.9988238,
+                lng: 120.2202326,
             },
 		},
     ];
@@ -62,23 +62,23 @@ function staticLoadPlaces() {
 
 var models = [
     {
-        url: './assets/magnemite/scene.gltf',
+        url: './picture/pic-01.png',
         scale: '0.5 0.5 0.5',
-        info: 'Magnemite, Lv. 5, HP 10/10',
+        info: '全站儀',
         rotation: '0 180 0',
     },
     {
-        url: './assets/articuno/scene.gltf',
+        url: './picture/20201110153200.jpg',
         scale: '0.2 0.2 0.2',
         rotation: '0 180 0',
-        info: 'Articuno, Lv. 80, HP 100/100',
+        info: '測量系',
     },
-    {
+    /*{
         url: './assets/dragonite/scene.gltf',
         scale: '0.08 0.08 0.08',
         rotation: '0 180 0',
         info: 'Dragonite, Lv. 99, HP 150/150',
-    },
+    },*/
 ];
 
 var modelIndex = 0;
@@ -95,7 +95,7 @@ var setModel = function (model, entity) {
         entity.setAttribute('position', model.position);
     }
 
-    entity.setAttribute('gltf-model', model.url);
+    entity.setAttribute('src-model', model.url);
 
     const div = document.querySelector('.instructions');
     div.innerText = model.info;
