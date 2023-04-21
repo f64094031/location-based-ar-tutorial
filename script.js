@@ -62,13 +62,13 @@ function staticLoadPlaces() {
 
 var models = [
     {
-        url: 'https://github.com/f64094031/location-based-ar-tutorial/blob/3039c2f0947ef1541cf622549624dbd6d8ce9b84/picture/pic-01.png',
+        url: '/picture/pic-01.png',
         scale: '0.5 0.5 0.5',
         info: '全站儀',
         rotation: '0 180 0',
     },
     {
-        url: 'https://github.com/f64094031/location-based-ar-tutorial/blob/3039c2f0947ef1541cf622549624dbd6d8ce9b84/picture/20201110153200.jpg',
+        url: '/picture/20201110153200.jpg',
         scale: '0.2 0.2 0.2',
         rotation: '0 180 0',
         info: '測量系',
