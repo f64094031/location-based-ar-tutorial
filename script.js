@@ -105,6 +105,12 @@ var models = [
         rotation: '0 180 0',
         info: '測量系',
     },
+	{
+        url: '/20201110153200.jpg',
+        scale: '1 0.2 0.2',
+        rotation: '0 180 0',
+        info: '123',
+    },
     /*{
         url: './assets/dragonite/scene.gltf',
         scale: '0.08 0.08 0.08',
