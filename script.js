@@ -111,7 +111,7 @@ var models = [
         url: '/pictur/20201110153200.jpg',
         scale: '1 0.2 0.2',
         rotation: '0 180 0',
-        info: '123',
+        info: '1234',
     },
     /*{
         url: './assets/dragonite/scene.gltf',
