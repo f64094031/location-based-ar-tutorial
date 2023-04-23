@@ -40,6 +40,7 @@ function staticLoadPlaces() {
                 lng: 120.220098,
             },
         },
+		/*
 		{
 			name: 'Pokèmon1',
             location: {
@@ -89,24 +90,25 @@ function staticLoadPlaces() {
                 lng: 120.217925,
             },
 		},
+		*/
     ];
 }
 
 var models = [
     {
-        url: '/pic-01.png',
+        url: '/picture/pic-01.png',
         scale: '0.5 0.5 0.5',
         info: '全站儀',
         rotation: '0 180 0',
     },
     {
-        url: '/20201110153200.jpg',
+        url: '/pictur/20201110153200.jpg',
         scale: '1 0.2 0.2',
         rotation: '0 180 0',
         info: '測量系',
     },
 	{
-        url: '/20201110153200.jpg',
+        url: '/pictur/20201110153200.jpg',
         scale: '1 0.2 0.2',
         rotation: '0 180 0',
         info: '123',
