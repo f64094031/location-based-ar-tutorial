@@ -40,7 +40,7 @@ function staticLoadPlaces() {
                 lng: 120.220098,
             },
         },
-		/*
+		
 		{
 			name: 'Pokèmon1',
             location: {
@@ -90,7 +90,7 @@ function staticLoadPlaces() {
                 lng: 120.217925,
             },
 		},
-		*/
+		
     ];
 }
 
