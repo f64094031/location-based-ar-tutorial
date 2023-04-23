@@ -1,10 +1,35 @@
 window.onload = () => {
     const button = document.querySelector('button[data-action="change"]');
-    button.innerText = 'O';
+    button.innerText = '﹖';
 
     let places = staticLoadPlaces();
     renderPlaces(places);
 };
+
+function renderPlaces(places) {
+    let scene = document.querySelector('a-scene');
+
+    places.forEach((place) => {
+        let latitude = place.location.lat;
+        let longitude = place.location.lng;
+
+        let model = document.createElement('a-entity');
+        model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+
+        setModel(models[modelIndex], model);
+
+        model.setAttribute('animation-mixer', '');
+
+        document.querySelector('button[data-action="change"]').addEventListener('click', function () {
+            var entity = document.querySelector('[gps-entity-place]');
+            modelIndex++;
+            var newIndex = modelIndex % models.length;
+            setModel(models[newIndex], entity);
+        });
+
+        scene.appendChild(model);
+    });
+}
 
 function staticLoadPlaces() {
     return [
@@ -69,13 +94,13 @@ function staticLoadPlaces() {
 
 var models = [
     {
-        url: '/picture/pic-01.png',
+        url: '/pic-01.png',
         scale: '0.5 0.5 0.5',
         info: '全站儀',
         rotation: '0 180 0',
     },
     {
-        url: '/picture/20201110153200.jpg',
+        url: '/20201110153200.jpg',
         scale: '1 0.2 0.2',
         rotation: '0 180 0',
         info: '測量系',
@@ -116,7 +141,7 @@ function renderPlaces(places) {
         let longitude = place.location.lng;
 
         let model = document.createElement('a-entity');
-        model.setAttribute('gps-entity-place', 'latitude: ${latitude}; longitude: ${longitude};');
+        model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
 
         setModel(models[modelIndex], model);
 
