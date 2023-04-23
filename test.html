@@ -1,0 +1,83 @@
+
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>GeoAR.js demo</title>
+    <script src='https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js'></script>
+    <script src='https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js'></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    
+   
+</head>
+
+<link rel="stylesheet" href="./styles/index.css">
+
+<!--下一行是接OSM的-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+
+
+<body style='margin: 0; overflow: hidden;'>
+    
+    <a-scene 
+        cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'
+        raycaster="objects: [gps-entity-place];useWorldCoordinates:true"
+        vr-mode-ui='enabled: false' 
+                arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
+    <a-camera gps-camera rotation-reader>
+        <img src="https://dylan1211-hub.github.io/smalltest/assets/heart.png" 
+        style="width:25% ; height:15% ; position:fixed; left: 80px; top: 320px;display: block;"/>
+        <div class="checkbox">
+            <p>💡推薦層級:</p>
+            <p>
+               <label for="gold"> <input type="checkbox" name="color" value="gold" id="gold"  />🥇大推</label>
+            </p>
+            <p>
+               <label for="silver"><input type="checkbox" name="color" value="silver" id="silver"  />🥈推推</label>
+            </p>
+            <p>
+               <label for="copper"><input type="checkbox" name="color" value="copper" id="copper"  />🥉推</label>
+            </p>
+            
+            <!--<p>
+                <label for="red"><input type="checkbox" name="color" value="red" id="red"  />🔴熱賣特惠</label>
+             </p>
+             <p>
+                <label for="white"><input type="checkbox" name="color" value="white" id="white"  />⚪其他</label>
+             </p>-->
+       
+            <button id="btn" class="cbtn">確認</button>
+        </div>
+        
+    </a-camera>
+
+            
+    </a-scene>
+    
+    
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="bundle.js"></script>
+    
+
+    <!--<div id="store" >
+    <script>
+    var data=
+    [
+    {"type":"men's fashions","lat":22.99792822,"lon":120.2205533,"building":"Resource","name":"Lif8","item":"T-shirt","sales":50,"hit_x":"v","website":"http:\/\/www.dream-mall.com.tw\/Brand\/Details\/8992232f-46f7-4e44-a7fc-16baa1baf7dc","trek2there":"arcgis-trek2there:\/\/?stop=22.99792822,120.2205533","hit_y":"v"},
+    {"type":"kid's fashions","lat":22.99668903,"lon":120.2195844,"building":"Museum","name":"Anny","item":"hat","sales":50,"hit_x":null,"website":"http:\/\/www.dream-mall.com.tw\/Brand\/Details\/a12e86a7-d3ea-4250-9349-332eded300b5","trek2there":"arcgis-trek2there:\/\/?stop=22.99668903,120.2195844","hit_y":null},
+    {"type":"drink and snack","lat":22.99654269,"lon":120.2185315,"building":"Multi-Purpose Building","name":"HANLIN TEA HOUSE","item":"bubble tea","sales":50,"hit_x":"v","website":"http:\/\/www.dream-mall.com.tw\/Brand\/Details\/75caa17f-49f6-425c-b494-9ce0051d22af","trek2there":"arcgis-trek2there:\/\/?stop=22.99654269,120.2185315","hit_y":"v"}
+    ]
+        for(i=0;i<=data.length;i++)
+        {
+          document.innerHTML = data.name+"<br/>";
+        }
+    </script>
+    </div>-->
+    
+</body>
+
+</html>
