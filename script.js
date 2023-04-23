@@ -69,7 +69,7 @@ var models = [
     },
     {
         url: '/picture/20201110153200.jpg',
-        scale: '0.2 0.2 0.2',
+        scale: '1 0.2 0.2',
         rotation: '0 180 0',
         info: '測量系',
     },
