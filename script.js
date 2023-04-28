@@ -3,33 +3,9 @@ window.onload = () => {
     button.innerText = '﹖';
 
     let places = staticLoadPlaces();
+    //console.log(places);    //test
     renderPlaces(places);
 };
-
-function renderPlaces(places) {
-    let scene = document.querySelector('a-scene');
-
-    places.forEach((place) => {
-        let latitude = place.location.lat;
-        let longitude = place.location.lng;
-
-        let model = document.createElement('a-entity');
-        model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-
-        setModel(models[modelIndex], model);
-
-        model.setAttribute('animation-mixer', '');
-
-        document.querySelector('button[data-action="change"]').addEventListener('click', function () {
-            var entity = document.querySelector('[gps-entity-place]');
-            modelIndex++;
-            var newIndex = modelIndex % models.length;
-            setModel(models[newIndex], entity);
-        });
-
-        scene.appendChild(model);
-    });
-}
 
 function staticLoadPlaces() {
     return [
@@ -90,7 +66,6 @@ function staticLoadPlaces() {
                 lng: 120.217925,
             },
 		},
-		
     ];
 }
 
@@ -137,7 +112,7 @@ var setModel = function (model, entity) {
 
     entity.setAttribute('src-model', model.url);
 
-    const div = document.querySelector('.instructions');
+    const div = document.getSelection('.instructions');
     div.innerText = model.info;
 };
 
@@ -147,7 +122,7 @@ function renderPlaces(places) {
     places.forEach((place) => {
         let latitude = place.location.lat;
         let longitude = place.location.lng;
-
+        console.log(latitude);  //test位置
         let model = document.createElement('a-entity');
         model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
 
