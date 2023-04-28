@@ -1,43 +1,65 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>demo123</title>
-    <script src='https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js'></script>
-    <script src='https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js'></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script>
-        THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
-    </script>
-</head>
+  <head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+		<a-box 
+			position="-1 0.5 -3" 
+			rotation="0 45 0" 
+			color="#4CC3D9"
+			src="./pic/tex.jpg">
+			<a-circlenpm start
+				position="0 0 0"
+				scale="2 1 1"
+				color="#333333"
+				side="double"	<!--兩面都顯示-->
+			</a-circle>
+		</a-box>
+		
+		<a-circle
+				position="0 0 0"
+				radius="1.25"
+				color="#444444"
+				side="double"
+		</a-circle>
+		
+		<a-sphere 
+			position="0 1.25 -5" 
+			radius="1.25" 
+			color="#EF2D5E">
+		</a-sphere>
+		
+		<a-cylinder
+			position="1 0.75 -3" 
+			radius="0.5" 
+			height="1.5" 
+			color="#FFC65D" 
+			segments-radial="6"			
+			open-ended="true"	
+			side="double" 
+			scale="2 1 2">
+		</a-cylinder>
+		
+		<a-plane 
+			position="0 0 -4" 
+			rotation="-90 0 0" 
+			width="4" height="4" 
+			color="#7BC8A4">
+		</a-plane>
+		
+		<a-sky 
+			color="#ECECEC">
+		</a-sky>
+	  
+	  
+		
 
-<body style='margin: 0; overflow: hidden;'>
-    <a-scene
-		<a-assets>
-			<img id="platform" src="platform.jpg">
-		</a-assets>
+		<!-- Basic box. -->
+		<a-box color="tomato" depth="2" height="4" width="0.5"></a-box>
 
-		<!-- Basic circle. -->
-		<a-circle color="#CCC" radius="20" gps-entity-place="longitude: 23.008376; latitude: 120.217925;"></a-circle>
-
-		<!-- Textured circle parallel to ground. -->
-		<a-circle src="#platform" radius="50" rotation="-90 0 0"></a-circle>
-		
-		
-		<!-- Using the asset management system. -->
-		<a-image src="pic-01.png"></a-image>
-
-		<!-- Defining the URL inline. Not recommended but more comfortable for web developers. -->
-		<a-image src="20201110153200.jpg"></a-image>
-		
-        vr-mode-ui="enabled: false"
-		embedded
-        arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
-		
-        
-		<a-image src="20201110153200.jpg" width="200" height="100" gps-entity-place="longitude: 23.008376; latitude: 120.217925;" ></a-image>
-		
-        <a-camera gps-camera rotation-reader></a-camera>
-	</a-scene>
-</body>
+		<!-- Textured box. -->
+		<a-box src="#texture"></a-box>
+    </a-scene>
+  </body>
+</html>
