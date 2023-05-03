@@ -110,9 +110,9 @@ var setModel = function (model, entity) {
         entity.setAttribute('position', model.position);
     }
 
-    entity.setAttribute('src-model', model.url);
+    entity.setAttribute('gltf-model', model.url);
 
-    const div = document.getSelection('.instructions');
+    const div = document.querySelector('.instructions');
     div.innerText = model.info;
 };
 
@@ -122,7 +122,7 @@ function renderPlaces(places) {
     places.forEach((place) => {
         let latitude = place.location.lat;
         let longitude = place.location.lng;
-        console.log(latitude);  //test位置
+        console.log(latitude);
         let model = document.createElement('a-entity');
         model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
 
