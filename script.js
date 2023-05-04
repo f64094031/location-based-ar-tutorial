@@ -71,19 +71,19 @@ function staticLoadPlaces() {
 
 var models = [
     {
-        url: '/pic/texture.png',
+        url: './pic/texture.png',
         scale: '0.5 0.5 0.5',
         info: '全站儀',
         rotation: '0 180 0',
     },
     {
-        url: '/pic/20201110153200.jpg',
+        url: './pic/20201110153200.jpg',
         scale: '1 0.2 0.2',
         rotation: '0 180 0',
         info: '測量系',
     },
 	{
-        url: '/pic/20201110153200.jpg',
+        url: './pic/p0.jpg',
         scale: '1 0.2 0.2',
         rotation: '0 180 0',
         info: '1234',
@@ -110,7 +110,7 @@ var setModel = function (model, entity) {
         entity.setAttribute('position', model.position);
     }
 
-    entity.setAttribute('gltf-model', model.url);
+    entity.setAttribute('src', model.url);
 
     const div = document.querySelector('.instructions');
     div.innerText = model.info;

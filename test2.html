@@ -6,6 +6,9 @@
     <a-scene>
 			<a-assets>
 				<img id = "mental-NRM" src="./pic/tex.jpg">
+				<img id="brick" src="./pic/tex.jpg">
+				<img id="sky" src="./pic/146553719.jpg">
+				<a-assets-item id="articuno" src="./assets/articuno/scene.gltf"></a-assets-item>
 			</a-assets>
 		<a-box 
 			
@@ -47,7 +50,14 @@
 			segments-radial="6"			
 			open-ended="true"	
 			side="double" 
-			scale="2 1 2">
+			scale="2 1 2"
+			material="color: #FF3456 ;
+								src: #brick"
+			repeat = "2 1"
+			normal-map = "brick;"
+			normal-texture-repeat="2 1"
+			normal-scale="1 -1"
+			roughness="0.1">
 		</a-cylinder>
 		
 		<a-plane 
@@ -58,11 +68,26 @@
 		</a-plane>
 		
 		<a-sky 
-			color="#ECECEC">
+			src="#sky"
+			radius="20"
+			side="double">
 		</a-sky>
 	  
-	  
-		
+	  <a-entity 
+							geometry="primitive: ring"
+							position="3 2 -10">
+							<a-camera 
+								position="0 0 15"
+								user-height="1.6"> 
+							</a-camera>		
+		</a-entity>
+
+		<a-entity 
+							geometry="primitive: cone"
+							gltf-model="#articuno" 
+							position="5 5 5">
+		</a-entity>
+
 
 		<!-- Basic box. -->
 		<a-box color="tomato" depth="2" height="4" width="0.5"></a-box>
