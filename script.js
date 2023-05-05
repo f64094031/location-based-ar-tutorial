@@ -110,7 +110,7 @@ var setModel = function (model, entity) {
         entity.setAttribute('position', model.position);
     }
 
-    entity.setAttribute('src', model.url);
+    entity.setAttribute('gltf-model', model.url);
 
     const div = document.querySelector('.instructions');
     div.innerText = model.info;
