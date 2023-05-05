@@ -92,19 +92,19 @@ var models = [
         url: './assets/dragonite/scene.gltf',
         scale: '0.08 0.08 0.08',
         rotation: '0 180 0',
-        info: 'Dragonite, Lv. 99, HP 150/1500',
+        info: 'Dragonite, Lv. 99, HP 150/150',
     },
     {
         url: './assets/articuno/scene.gltf',
         scale: '0.08 0.08 0.08',
         rotation: '0 180 0',
-        info: 'Dragonite, Lv. 99, HP 150/1500',
+        info: 'Dragonite, Lv. 99, HP 150/150',
     },
     {
         url: './assets/magnemite/scene.gltf',
         scale: '0.08 0.08 0.08',
         rotation: '0 180 0',
-        info: 'Dragonite, Lv. 99, HP 150/1500',
+        info: 'Dragonite, Lv. 99, HP 150/150',
     },
 ];
 
