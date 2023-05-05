@@ -70,7 +70,7 @@ function staticLoadPlaces() {
 }
 
 var models = [
-    {
+    /*{
         url: './pic/texture.png',
         scale: '0.5 0.5 0.5',
         info: '全站儀',
@@ -87,13 +87,25 @@ var models = [
         scale: '1 0.2 0.2',
         rotation: '0 180 0',
         info: '1234',
-    },
-    /*{
+    },*/
+    {
         url: './assets/dragonite/scene.gltf',
         scale: '0.08 0.08 0.08',
         rotation: '0 180 0',
         info: 'Dragonite, Lv. 99, HP 150/1500',
-    },*/
+    },
+    {
+        url: './assets/articuno/scene.gltf',
+        scale: '0.08 0.08 0.08',
+        rotation: '0 180 0',
+        info: 'Dragonite, Lv. 99, HP 150/1500',
+    },
+    {
+        url: './assets/magnemite/scene.gltf',
+        scale: '0.08 0.08 0.08',
+        rotation: '0 180 0',
+        info: 'Dragonite, Lv. 99, HP 150/1500',
+    },
 ];
 
 var modelIndex = 0;
@@ -110,7 +122,7 @@ var setModel = function (model, entity) {
         entity.setAttribute('position', model.position);
     }
 
-    entity.setAttribute('src', model.url);
+    entity.setAttribute('gltf-model', model.url);
 
     const div = document.querySelector('.instructions');
     div.innerText = model.info;
