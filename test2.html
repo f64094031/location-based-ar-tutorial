@@ -21,6 +21,13 @@
 			normal-texture-repeat="2 1"
 			normal-scale="1 -1"
 			roughness="0.1">
+				<a-animation 
+					attribute="rotation" 
+					to="0 360 0"
+					repeat="indefinite"
+					dur="5000"
+					easing="linear">
+				</a-animation>
 			<a-circle 
 				position="10 0 0"
 				scale="2 1 1"
@@ -29,6 +36,8 @@
 			</a-circle>
 		</a-box>
 		
+		
+
 		<a-circle
 				position="0 0 0"
 				radius="1.25"
@@ -65,6 +74,7 @@
 			rotation="-90 0 0" 
 			width="4" height="4" 
 			color="#7BC8A4">
+			
 		</a-plane>
 		
 		<a-sky 
@@ -77,7 +87,7 @@
 							geometry="primitive: ring"
 							position="3 2 -10">
 							<a-camera 
-								position="0 0 15"
+								position="-5 0 10"
 								user-height="1.6"> 
 							</a-camera>		
 		</a-entity>
@@ -85,12 +95,44 @@
 		<a-entity 
 							geometry="primitive: cone"
 							gltf-model="#articuno" 
+							scale="0.1 0.1 0.1"
 							position="5 5 5">
 		</a-entity>
 
+		<a-gltf-model src="#articuno" ></a-gltf-model>
+
+		<a-entity>
+			<a-box position="15 0 0"></a-box>
+			<a-animation attribute="position"
+									 dur="1000"
+									 
+									 from="0 -5 0"
+									 to="0 5 0"
+									 repeat="indefinite"></a-animation>
+		</a-entity>
+
+		<a-entity
+			light="type: ambient;
+							intensity: 0.2">
+		</a-entity>
+
+		<a-entity
+			light="type: point;
+							intensity: 2"
+			position="0 15 0">
+		</a-entity>
+
+		<a-entity
+			light="type: spot;
+							intensity: 2
+							color: #C40070"
+			position="10 0 0">
+		</a-entity>
 
 		<!-- Basic box. -->
-		<a-box color="tomato" depth="2" height="4" width="0.5"></a-box>
+		<a-box color="tomato" depth="2" height="4" width="0.5">
+			
+		</a-box>
 
 		<!-- Textured box. -->
 		<a-box src="#texture"></a-box>
