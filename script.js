@@ -89,22 +89,22 @@ var models = [
         info: '1234',
     },*/
     {
+        url: './assets/magnemite/scene.gltf',
+        scale: '0.5 0.5 0.5',
+        info: 'Magnemite, Lv. 5, HP 10/10',
+        rotation: '0 180 0',
+    },
+    {
+        url: './assets/articuno/scene.gltf',
+        scale: '0.2 0.2 0.2',
+        rotation: '0 180 0',
+        info: 'Articuno, Lv. 80, HP 100/100',
+    },
+    {
         url: './assets/dragonite/scene.gltf',
         scale: '0.08 0.08 0.08',
         rotation: '0 180 0',
         info: 'Dragonite, Lv. 99, HP 150/150',
-    },
-    {
-        url: './assets/articuno/scene.gltf',
-        scale: '0.08 0.08 0.08',
-        rotation: '0 180 0',
-        info: 'Articuno, Lv. 99, HP 150/1500',
-    },
-    {
-        url: './assets/magnemite/scene.gltf',
-        scale: '0.08 0.08 0.08',
-        rotation: '0 180 0',
-        info: 'Magnemite, Lv. 99, HP 150/15000',
     },
 ];
 
