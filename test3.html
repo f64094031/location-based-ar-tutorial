@@ -28,6 +28,34 @@
         <a-image src="#P1" rotation="0 180 0" scale="0.15 0.15 0.15" 
         gps-entity-place="longitude: 120.217922; latitude: 23.008374;" 
         animation-mixer/>
+        
+        <a-box  
+          gps-entity-place="longitude: 120.217871; latitude: 23.008405;" 
+          scale="0.15 0.15 0.15" 
+			    rotation="0 45 0" 
+			    color="#FFFFFF"
+			    src="./pic/20201110153200.jpg"
+			    repeat = "2 1"
+			    normal-map = "#mental-NRM"
+			    normal-texture-repeat="2 1"
+			    normal-scale="1 -1"
+			    roughness="0.1">
+				    <a-animation 
+					    attribute="rotation" 
+					    to="0 360 0"
+					    repeat="indefinite"
+					    dur="5000"
+					    easing="linear">
+				    </a-animation>
+			    <a-circle 
+				    position="10 0 0"
+				    scale="2 1 1"
+				    color="#333333" 
+				    side="double">	<!-- 兩面都顯示 -->
+			    </a-circle>
+		    </a-box>
+
+
         <a-camera gps-camera rotation-reader></a-camera>
 	</a-scene>
 </body>
