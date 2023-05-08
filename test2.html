@@ -12,7 +12,6 @@
 				<a-assets-item id="articuno" src="./assets/articuno/scene.gltf"></a-assets-item>
 			</a-assets>
 		<a-box 
-			
 			position="-1 0.5 -3" 
 			rotation="0 45 0" 
 			color="#FFFFFF"
@@ -73,26 +72,38 @@
 		</a-cylinder>
 		
 		<a-plane 
-			position="0 0 -4" 
-			rotation="-90 0 0" 
-			width="4" height="4" 
-			color="0000AA">
+			position="0 0 -4"
+			src="#arrow"
+			repeat = "1 30" 
+			rotation="-89 0 0" 
+			width="0.1" height="30" 
+			color="0000AA">	
 			
+		</a-plane>
+
+		<a-plane 
+			position="0 0 -4"
+			src="#arrow"
+			repeat = "1 30" 
+			rotation="-89 89 0" 
+			width="0.1" height="30" 
+			color="0000AA">	
 		</a-plane>
 		
 		<a-sky 
 			src="#sky"
 			radius="20"
 			side="double">
+			<a-camera 
+					position="0 0 -20"
+					user-height="1"> 
+			</a-camera>		
 		</a-sky>
 	  
 	  <a-entity 
 							geometry="primitive: ring"
 							position="3 2 -10">
-							<a-camera 
-								position="-3 -2 15"
-								user-height="5"> 
-							</a-camera>		
+							
 		</a-entity>
 
 		<a-entity 

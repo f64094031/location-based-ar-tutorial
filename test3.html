@@ -27,7 +27,7 @@
         </a-assets>
         
         <a-image src="#P1" rotation="0 180 0" scale="0.15 0.15 0.15" 
-        gps-entity-place="longitude: 120.217922; latitude: 23.008374;" 
+        gps-entity-place="longitude: 120.220086; latitude: 22.998544;" 
         animation-mixer/>
 
         <a-image src="#arrow" rotation="-80 0 0" scale="1 1 1" 
@@ -65,12 +65,14 @@
 		    </a-box>
 
         <a-plane 
-          gps-entity-place="longitude: 120.217850; latitude: 23.008420;" 
-          scale="1 1 1" 
-			    rotation="-90 0 90" 
-			    width="2" height="40" 
-			    color="0000AA">
-		    </a-plane>
+            gps-entity-place="longitude: 120.217850; latitude: 23.008420;" 
+            scale="1 1 1" 
+		    rotation="-90 0 90" 
+			width="2" height="40" 
+			color="0000AA"
+            src="#arrow"
+			repeat = "1 30" >
+		</a-plane>
 
         <a-text 
           value="我家"
@@ -87,7 +89,26 @@
           gps-entity-place="longitude: 120.217901; latitude: 23.008287;">
         </a-text>
          
+        <a-text 
+        value="測量系" 
+        gps-entity-place="longitude: 120.2193875; latitude: 22.9986148;">
+        </a-text>
 
+        <a-text 
+        value="數學系" 
+        gps-entity-place="longitude: 120.2189759; latitude: 22.9986366;">
+        </a-text>
+
+        <a-text 
+          value="土木系" 
+          gps-entity-place="longitude: 120.2196431; latitude: 22.9989043;">
+        </a-text>
+
+        <a-entity 
+        gltf-model="#articuno" 
+        scale="0.05 0.05 0.05"
+        gps-entity-place="longitude: 120.220013; latitude: 22.998374;">
+        </a-entity>
 
         <a-camera gps-camera rotation-reader></a-camera>
 	</a-scene>
