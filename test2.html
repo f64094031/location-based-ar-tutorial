@@ -72,32 +72,43 @@
 		</a-cylinder>
 		
 		<a-plane 
-			position="0 0 -4"
+			position="5 0 -4"
+			src="#arrow"
+			repeat = "1 30" 
+			rotation="90 0 0" 
+			width="1" height="30" 
+			color="#FFFFFF"
+			side="double">	
+			<a-plane 
+			position="-14.5 15 0"
+			src="#arrow"
+			repeat = "1 30" 
+			rotation="0 0 90" 
+			width="1" height="30" 
+			color="#0000AA"
+			side="double">	
+			</a-plane>
+		</a-plane>
+
+		<a-plane 
+			position="5 0 -4"
 			src="#arrow"
 			repeat = "1 30" 
 			rotation="-89 0 0" 
 			width="1" height="30" 
-			color="0000AA"
+			color="#FFFFFF"
 			side="double">	
-			
 		</a-plane>
-
-		<a-plane 
-			position="0 0 0"
-			src="#arrow"
-			repeat = "1 30" 
-			rotation="-89 89 0" 
-			width="0.1" height="30" 
-			color="0000AA">	
-		</a-plane>
+		
 		
 		<a-sky 
 			src="#sky"
 			radius="20"
 			side="double">
 			<a-camera 
-					position="0 5 -2"
-					user-height="5"> 
+					position="-3 5 -10"
+					user-height="5"
+					> 
 			</a-camera>		
 		</a-sky>
 	  
