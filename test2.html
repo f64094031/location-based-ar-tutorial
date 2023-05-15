@@ -3,6 +3,30 @@
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   </head>
   <body>
+		<h2>What Can JavaScript Do?</h2>
+		<p id="demo">JavaScript can change HTML content.</p>
+		<!-- 按下button時，觸發反應 -->
+		<button onclick="document.getElementById('demo').innerHTML='Hello JavaScript!'">Click me!</button>
+		<hr>
+
+		<h2>Click the button to display a time-based greeting</h2>
+		<!-- 按下button時，觸發myfunction()之反應 -->
+		<button onclick="myFunction()">Hello!</button>
+		<p id="demo2"></p>
+		<script>
+		function myFunction() {               <!-- 自行定義Fuction -->
+			var hour = new Date().getHours(); <!-- 抓出24小時 -->
+			var greeting;
+			if (hour < 12) {    <!-- if-else -->
+				greeting = "Good morning! ";
+			} else {
+				greeting = "Good evening! ";
+			}
+			document.getElementById("demo2").innerHTML = greeting + "Now is " + hour + " o'clock.";
+		}
+		</script>
+		<hr>		
+
     <a-scene>
 			<a-assets>
 				<img id = "mental-NRM" src="./pic/tex.jpg">
