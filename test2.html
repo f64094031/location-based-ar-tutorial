@@ -1,17 +1,18 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="./test.css"/>
   </head>
   <body>
 		<h2>What Can JavaScript Do?</h2>
 		<p id="demo">JavaScript can change HTML content.</p>
 		<!-- 按下button時，觸發反應 -->
-		<button onclick="document.getElementById('demo').innerHTML='Hello JavaScript!'">Click me!</button>
+		<button id="click" onclick="document.getElementById('demo').innerHTML='Hello JavaScript!'">Click me!</button>
 		<hr>
 
 		<h2>Click the button to display a time-based greeting</h2>
 		<!-- 按下button時，觸發myfunction()之反應 -->
-		<button onclick="myFunction()">Hello!</button>
+		<button id="hello" onclick="myFunction()">Hello!</button>
 		<p id="demo2"></p>
 		<script>
 		function myFunction() {               

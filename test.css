@@ -1,0 +1,35 @@
+#click {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  left: center;
+  justify-content: center;
+  border: 2px solid white;
+  background-color: transparent;
+  width: 2em;
+  height: 2em;
+  border-radius: 100%;
+  font-size: 2em;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  outline: none;
+}
+
+#hello {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 500px;
+  left: 50px;
+  justify-content: center;
+  border: 2px solid white;
+  background-color: transparent;
+  width: 2em;
+  height: 2em;
+  border-radius: 100%;
+  font-size: 2em;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  outline: none;
+}
