@@ -4,11 +4,6 @@
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./test.css"/>
 		<style>
-			/* Always set the map height explicitly to define the size of the div
-			 * element that contains the map. */
-			#map {
-				height: 50%;
-			}
 			/* Optional: Makes the sample page fill the window. */
 			html, body {
 				height: 100%;
@@ -57,7 +52,7 @@
 				}).then(function(data){
 					console.log(data);
 					let one=data;
-					console.log(one.records[0].sitename);
+					console.log(one.records[3].status);
 					document.getElementById("apidata").innerHTML ="<div>" + "空氣品質資料:" + one.records[3].sitename + ": " + one.records[3].status + "<div>";
 				});
 			}

@@ -60,7 +60,7 @@
   left: 50%;
   z-index: 999;
   color: green;
-  padding: 50px;
+  padding: 0px;
 }
 
 .button{
@@ -88,8 +88,9 @@
 
 #map {
   position:absolute;
-  top: 400px;
+  top: 50%;
   left: 50%;
   z-index: 99;
-  padding: 400px;
+  padding: 10%;
+  height: 50%;
 }
