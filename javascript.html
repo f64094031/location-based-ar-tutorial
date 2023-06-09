@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript</title>
+	<link rel="stylesheet" type="text/css" href="./test.css"/>
+	<style>
+		.btn{
+			background-color: aquamarine;
+			padding: 8px;border-radius: 5px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+
+<h2>What Can JavaScript Do?</h2>
+<p id="demo">JavaScript can change HTML content.</p>
+<!-- 按下button時，觸發反應 -->
+<button id="click" onclick="document.getElementById('demo').innerHTML='Hello JavaScript!'">Click me!</button>
+<hr>
+
+<h2>Click the button to display a time-based greeting</h2>
+<!-- 按下button時，觸發myfunction()之反應 -->
+<button id="hello" onclick="myFunction()">Hello!</button>
+<p id="demo2"></p>
+<script>
+function myFunction() {               <!-- 自行定義Fuction -->
+	var hour = new Date().getHours(); <!-- 抓出24小時 -->
+	var greeting;
+	if (hour < 12) {    <!-- if-else -->
+		greeting = "Good morning! ";
+	} else {
+		greeting = "Good evening! ";
+	}
+	document.getElementById("demo2").innerHTML = greeting + "Now is " + hour + " o'clock.";
+}
+</script>
+<hr>
+<h2> Do loop for an array </h2>
+<button onclick="myFunction2()">Try it</button>
+<p id="demo3"></p>
+<script>
+function myFunction2() {              
+		var index;
+		var text = "start";
+		<!-- 定義一個字串陣列 -->
+		var fruits = ["Banana", "Orange", "Apple", "Mango"];
+		<!-- For迴圈 -->
+		for (index = 0; index < fruits.length; index++) {
+		    text += "<br>" + fruits[index] ;
+		}
+		document.getElementById("demo3").innerHTML = text;
+}
+</script>
+<!-- 互動練習 -->
+<h6>練習</h6> <h5>練習</h5>
+<p id="test">JavaScript Pr.</p>
+<hr>
+	<button 
+		onclick="console.log('典籍');"
+		onmouseover="console.log('滑鼠移入')"
+		onmouseout="console.log('滑鼠移出')"
+		onmousedown="console.log('滑鼠暗助')"
+		onmouseup="console.log('滑鼠放開')"
+	>點我</button>
+
+	<hr>
+	<span
+		class="btn"
+		onmouseover="over(this);"
+		onmouseout="out(this);"
+		onmousedown="down(this);"
+		onmouseup="up(this);"
+	>點我1</span>
+<script>
+	function over(elem){
+		elem.style.backgroundColor="#ddaaaa";
+	}
+	function out(elem){
+		elem.style.backgroundColor="#ffcccc";
+	}
+	function down(elem){
+		elem.style.fontWeight="bold";
+	}
+	function up(elem){
+		elem.style.fontWeight="normal";
+	}
+</script>
+
+<!-- 取得現在經緯度 -->
+<p id="posi">position</p>
+		<script>
+			let currentposiotion;
+			navigator.geolocation.getCurrentPosition(function(position){
+				currentposiotion={
+					lat: position.coords.latitude,
+					lon: position.coords.longitude,
+				}
+				document.getElementById("posi").innerHTML = "緯度: "+currentposiotion.lat+", 經度: "+currentposiotion.lon;
+			});
+		</script>
+
+</body>
+</html>

@@ -1,243 +1,28 @@
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
+    <title>OSM LeafletAPI</title>
+	<meta charset='utf-8'>
+	<link rel="stylesheet" type="text/css" href="./testosm.css"/>
+</head>
+<style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #map {
+      height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
 
-    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="./test.css"/>
-		<style>
-			/* Always set the map height explicitly to define the size of the div
-			 * element that contains the map. */
-			#map {
-				height: 50%;
-			}
-			/* Optional: Makes the sample page fill the window. */
-			html, body {
-				height: 100%;
-				margin: 0;
-				padding: 0;
-			}
-		</style>
-	
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
-  </head>
-  <body>
-		
-		<h2>What Can JavaScript Do?</h2>
-		<div id="demo"><p>JavaScript can change HTML content.</p></div>
-		 <!-- 按下button時，觸發反應  -->
-		<button class="button" onclick="document.getElementById('demo').innerHTML='Hello JavaScript!'">Click me!</button>
-		<hr>
-
-		<h2>Click the button to display a time-based greeting</h2>
-		 <!-- 按下button時，觸發myfunction()之反應  -->
-		<button class="button" onclick="myFunction()">Hello!</button>
-		<div id="demo2"><p></p></div>
-		<script>
-		function myFunction() {  
-			console.log("123")             
-			var hour = new Date().getHours(); 
-			var greeting;
-			if (hour < 12) {    
-				greeting = "Good morning! ";
-			} else {
-				greeting = "Good evening! ";
-			}
-			document.getElementById("demo2").innerHTML = greeting + "Now is " + hour + " o'clock.";
-		}
-		</script>
-		<hr>
-			
-		<div id="apidata"><p>資料</p></div>
-		<button class="button abc" onclick="getdata()">獲取資料</button>
-		<script>
-			function getdata(){
-				fetch("https://data.epa.gov.tw/api/v2/aqx_p_432?format=json&language=zh&api_key=4dcde793-5890-4f3e-af67-58a652e0a1fc&filters=county,EQ,%E8%87%BA%E5%8D%97%E5%B8%82").then(function(response){
-					//https://data.epa.gov.tw/api/v2/aqx_p_149?format=json&language=zh&api_key=4dcde793-5890-4f3e-af67-58a652e0a1fc
-					return response.json();
-				}).then(function(data){
-					console.log(data);
-					let one=data;
-					console.log(one.records[0].sitename);
-					document.getElementById("apidata").innerHTML ="<div>" + "空氣品質資料:" + one.records[3].sitename + ": " + one.records[3].status + "<div>";
-				});
-			}
-		</script>
-
-    <a-scene>
-			<a-assets>
-				<img id = "mental-NRM" src="./pic/tex.jpg">
-				<img id="brick" src="./pic/tex.jpg">
-				<img id="sky" src="./pic/146553719.jpg">
-				<img id="arrow" src="./pic/arrow.png">
-				<a-assets-item id="articuno" src="./assets/articuno/scene.gltf"></a-assets-item>
-			</a-assets>
-		<a-box 
-			position="-1 0.5 -3" 
-			rotation="0 45 0" 
-			color="#FFFFFF"
-			src="./pic/TexturesCom.jpg"
-			repeat = "2 1"
-			normal-map = "#mental-NRM"
-			normal-texture-repeat="2 1"
-			normal-scale="1 -1"
-			roughness="0.1">
-				<a-animation 
-					attribute="rotation" 
-					to="0 360 0"
-					repeat="indefinite"
-					dur="5000"
-					easing="linear">
-				</a-animation>
-			<a-circle 
-				position="10 0 0"
-				scale="2 1 1"
-				color="#333333" 
-				side="double">	<!-- 兩面都顯示 -->
-			</a-circle>
-		</a-box>
-		
-		<a-image src="#arrow" rotation="-80 0 0" scale="1 1 1" 
-				position="5 0 0"
-        ></a-image>
-
-		<a-circle
-				position="0 0 0"
-				radius="1.25"
-				color="#444444"
-				side="double">
-		</a-circle>
-		
-		<a-sphere 
-			position="0 1.25 -5" 
-			radius="1.25" 
-			color="#EF2D5E">
-		</a-sphere>
-		
-		<a-cylinder
-			position="1 0.75 -3" 
-			radius="0.5" 
-			height="1.5" 
-			color="#FFC65D"  
-			segments-radial="6"			
-			open-ended="true"	
-			side="double" 
-			scale="2 1 2"
-			material="color: #FF3456 ;
-								src: #brick"
-			repeat = "2 1"
-			normal-map = "#brick;"
-			normal-texture-repeat="2 1"
-			normal-scale="1 -1"
-			roughness="0.1">
-		</a-cylinder>
-		
-		<a-plane 
-			position="5 0 -4"
-			src="#arrow"
-			repeat = "1 30" 
-			rotation="90 0 0" 
-			width="1" height="30" 
-			color="#FFFFFF"
-			side="double">	
-			<a-plane 
-			position="-14.5 15 0"
-			src="#arrow"
-			repeat = "1 30" 
-			rotation="0 0 90" 
-			width="1" height="30" 
-			color="#0000AA"
-			side="double">	
-			</a-plane>
-		</a-plane>
-
-		<a-plane 
-			position="5 0 -4"
-			src="#arrow"
-			repeat = "1 30" 
-			rotation="-89 0 0" 
-			width="1" height="30" 
-			color="#FFFFFF"
-			side="double">	
-		</a-plane>
-		
-		
-		<a-sky 
-			src="#sky"
-			radius="20"
-			side="double">
-			<a-camera 
-					position="-3 5 -10"
-					user-height="5"
-					> 
-			</a-camera>		
-		</a-sky>
-	  
-	  <a-entity 
-							geometry="primitive: ring"
-							position="3 2 -10">
-							
-		</a-entity>
-
-		<a-entity 
-							geometry="primitive: cone"
-							gltf-model="#articuno" 
-							scale="0.1 0.1 0.1"
-							position="5 5 5">
-		</a-entity>
-
-		<a-gltf-model src="#articuno" ></a-gltf-model>
-
-		<a-entity position="0 0.5 0">
-			<a-animation attribute="rotation"
-									 dur="1000"
-									 to="0 360 0"
-									 repeat="indefinite">
-			</a-animation>
-			<a-box position="15 0 0"
-						 color="#00AA00">
-			</a-box>
-		</a-entity>
-
-		<a-entity
-			light="type: ambient">
-		</a-entity>
-
-		<a-entity
-			light="type: point;
-							intensity: 2"
-			position="0 15 0">
-		</a-entity>
-
-		<a-entity
-			light="type: spot;
-							intensity: 2
-							color: #C40070"
-			position="10 0 0">
-		</a-entity>
-
-		<a-text value="Hello, World!"
-			color="#00AA00"
-			scale="5 5 5"
-			side="double"
-		></a-text>
-
-		<!-- Basic box. -->
-		<a-box color="tomato" depth="2" height="4" width="0.5">
-			
-		</a-box>
-
-		<!-- Textured box. -->
-		<a-box src="#texture"></a-box>
-    </a-scene>
-
-		<div class="btn">
-			<button type="button">clickk</button>
-			<button type="button">hello</button>
-		</div>
-
-		<a-entity  super-hands id="leftHand" hand-controls="left"></a-entity>
-
-		<div id="map"></div>
+<body>
+    <div id="map"></div>
 	
 	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 	<!-- Load Esri Leaflet from CDN -->
@@ -415,7 +200,72 @@
 			var overlays = {};
 			L.control.layers(baselayers, overlays).addTo(map);
 			baselayers['OpenStreetMap.Mapnik'].addTo(map);
+			
+			/*新增圖層
+			var feature = L.geoJson(polygonJSON,{
+				onEachFeature : function(feature,layer){
+					layer.bindPopup('<b>This is a </b>'+feature.properties.name)
+				},
+				style:{
+					fillColor:'red',
+					fillOpacity:1,
+					color:'green'
+				}
+			}).addTo(map);
+			*/
+			
+			
+			/*Geocoding
+			// create the geocoding control and add it to the map
+				  var searchControl = L.esri.Geocoding.geosearch({
+					providers: [
+					  L.esri.Geocoding.arcgisOnlineProvider({
+						// API Key to be passed to the ArcGIS Online Geocoding Service
+						apikey: 'AAPK0998a50a98f44e9ea2d59792294f8019Sp-ErN3KC_gIVNPbHc7RkyQMuUjmZBP4MMbBgApQ5nnl_KQzTpZGEeUJ7AOkV57y'
+					  })
+					]
+				  }).addTo(map);
 
-		</script>
-  </body>
-</html>
+				  // create an empty layer group to store the results and add it to the map
+				  var results = L.layerGroup().addTo(map);
+
+				  // listen for the results event and add every result to the map
+				  searchControl.on("results", function (data) {
+					results.clearLayers();
+					for (var i = data.results.length - 1; i >= 0; i--) {
+					  results.addLayer(L.marker(data.results[i].latlng));
+					}
+				  });
+			*/	  
+		   /*補充 : 大量點資料
+			var POI2 = [
+					{
+						"type": "FeatureCollection",
+						"features": [
+							{
+								"type": "Feature",
+								"geometry": {
+										"type": "Point",
+										"coordinates":  [120.22093319574124,22.990544235195003 ]
+								},
+								"properties": {
+								"type":"3C",
+								}
+							}
+						]
+					}
+			];
+
+			var MyIcon = L.icon({
+				iconUrl: './assets/r4.png',
+				iconSize:     [10, 10], // size of the icon
+				shadowSize:   [50, 64], // size of the shadow
+				iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+				shadowAnchor: [4, 62],  // the same for the shadow
+				popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+			});
+
+			L.geoJson(POI2,{icon: MyIcon}).addTo(map);
+			*/
+	</script>
+</body>

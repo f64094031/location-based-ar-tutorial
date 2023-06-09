@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>A-Frame Navigation Path</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <a-assets>
+      <!-- 定義導航物體的模型或材質等資源 -->
+    </a-assets>
+
+    <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#ccc"></a-plane>
+
+    <!-- 定義路徑點 -->
+    <a-entity id="pathPoints">
+      <a-sphere position="-3 0 0" radius="0.3" color="red"></a-sphere>
+      <a-sphere position="0 0 0" radius="0.3" color="green"></a-sphere>
+      <a-sphere position="3 0 0" radius="0.3" color="blue"></a-sphere>
+    </a-entity>
+
+    <!-- 定義路徑 -->
+    <a-curve id="path" type="CatmullRom">
+      <a-curve-point position="-3 0 0"></a-curve-point>
+      <a-curve-point position="0 0 0"></a-curve-point>
+      <a-curve-point position="3 0 0"></a-curve-point>
+    </a-curve>
+
+    <!-- 導航物體 -->
+    <a-entity id="navigationObject" position="-3 0 0">
+      <a-entity geometry="primitive: box" material="color: yellow"></a-entity>
+    </a-entity>
+
+    <!-- 導航動畫 -->
+    <a-animation attribute="position" dur="3000" repeat="indefinite" easing="linear" to="3 0 0" begin="click"></a-animation>
+
+    <!-- 導航控制器 -->
+    <a-entity cursor="rayOrigin: mouse" raycaster="objects: [nav object selector]"></a-entity>
+  </a-scene>
+</body>
+</html>

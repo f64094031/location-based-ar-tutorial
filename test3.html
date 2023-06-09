@@ -11,33 +11,41 @@
         THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
     </script>
     <link rel="stylesheet" type="text/css" href="./test.css"/>
+
+    <style>
+			/* Always set the map height explicitly to define the size of the div
+			 * element that contains the map. */
+			#map {
+				height: 50%;
+			}
+			/* Optional: Makes the sample page fill the window. */
+			html, body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	
+	  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 
 <body style='margin: 0; overflow: hidden;'>
 
-  <h2>What Can JavaScript Do?</h2>
-		<p id="demo">JavaScript can change HTML content.</p>
-		<!-- 按下button時，觸發反應 -->
-		<button id="click" onclick="document.getElementById('demo').innerHTML='Hello JavaScript!'">Click me!</button>
-		<hr>
-
-		<h2>Click the button to display a time-based greeting</h2>
-		<!-- 按下button時，觸發myfunction()之反應 -->
-		<button id="hello" onclick="myFunction()">Hello!</button>
-		<p id="demo2"></p>
-		<script>
-		function myFunction() {               
-			var hour = new Date().getHours(); 
-			var greeting;
-			if (hour < 12) {    
-				greeting = "Good morning! ";
-			} else {
-				greeting = "Good evening! ";
-			}
-			document.getElementById("demo2").innerHTML = greeting + "Now is " + hour + " o'clock.";
-		}
-		</script>
-		<hr>		
+  <div id="apidata"><p>資料</p></div>
+  <button class="button abc" onclick="getdata()">獲取資料</button>
+  <script>
+    function getdata(){
+      fetch("https://data.epa.gov.tw/api/v2/aqx_p_432?format=json&language=zh&api_key=4dcde793-5890-4f3e-af67-58a652e0a1fc&filters=county,EQ,%E8%87%BA%E5%8D%97%E5%B8%82").then(function(response){
+        //https://data.epa.gov.tw/api/v2/aqx_p_149?format=json&language=zh&api_key=4dcde793-5890-4f3e-af67-58a652e0a1fc
+        return response.json();
+      }).then(function(data){
+        console.log(data);
+        let one=data;
+        console.log(one.records[0].sitename);
+        document.getElementById("apidata").innerHTML ="<div>" + "空氣品質資料:" + one.records[3].sitename + ": " + one.records[3].status + "<div>";
+      });
+    }
+  </script>
 
     <a-scene
         vr-mode-ui="enabled: false"
@@ -213,6 +221,190 @@
           gps-entity-place="longitude: 120.220013; latitude: 22.998374;">
         </a-entity>
 
+        
+
         <a-camera gps-camera rotation-reader></a-camera>
 	</a-scene>
+
+  <div id="map"></div>
+	
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+	<!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet"></script>
+
+    <!-- Esri Leaflet Geocoder -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css"
+    />
+	
+    <script src="https://unpkg.com/esri-leaflet-geocoder"></script>
+	<script>
+
+			// 建立地圖
+			const map = L.map('map', {
+				attributionControl: false, // 是否秀出 leaflet
+				zoomControl: true , // 是否秀出 - + 按鈕
+				zoom: 17, // 0-18
+			});
+			L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+			
+			// 移動 x, y 位置
+			function panBy(map) {
+				const btnPanby = document.querySelectorAll('.js-panby');
+				Array.prototype.forEach.call(btnPanby, pan => {
+					pan.addEventListener('click', e => {
+						e.preventDefault();
+						let times = e.target.dataset.times;
+						let point = 50 * times;
+						let points = [point, point];
+						map.panBy(points);
+					});
+				});
+			};
+			
+			// 移動到指定座標（平滑 || 縮放 效果）
+			function moveTo(map) {
+				const btnPanto = document.querySelectorAll('.js-panto');
+				Array.prototype.forEach.call(btnPanto, pan => {
+					pan.addEventListener('click', e => {
+						e.preventDefault();
+						let latLng = e.target.dataset.to.split(',');
+						let name = e.target.textContent;
+						let toggleFly = document.getElementById('flyTo').checked;
+						const popup = L.popup();
+						popup
+								.setLatLng(latLng)
+								.setContent(`${name}`)
+								.openOn(map);
+						toggleFly ? map.flyTo(latLng) : map.panTo(latLng);
+					});
+				});
+			};
+
+			// 跟使用者要位置
+			// 參考文件：https://leafletjs.com/examples/mobile/、https://leafletjs.com/reference-1.7.1.html#map-locate
+			map.locate({ 
+				setView: false, // 是否讓地圖跟著移動中心點
+				watch: true, // 是否要一直監測使用者位置
+				maxZoom: 18, // 最大的縮放值
+				enableHighAccuracy: true, // 是否要高精準度的抓位置
+				timeout: 10000 // 觸發locationerror事件之前等待的毫秒數
+				});
+
+			// 使用者不提供位置
+			const geomatics = [22.998790303676785, 120.21962877082252]; // 預設中心點為測量系館
+			function errorHandler(e) {
+				console.log("e", e);
+				window.alert('無法判斷您的所在位置，無法使用此功能。預設地點將為 測量系館');
+				map.setView(geomatics, 18); // 中心移到測量系館
+				moveTo(map); // 移動到指定座標（平滑 || 縮放 效果）
+				panBy(map); // 移動 x, y 位置
+			}
+			map.on('locationerror', errorHandler);
+
+			// 建立使用者 marker
+			const customIcon = L.icon({
+				iconUrl: 'https://letswritetw.github.io/letswrite-leaflet-osm-locate/dist/dot.svg',
+				iconSize: [16, 16],
+			});
+			const marker = L.marker(geomatics, {
+				icon: customIcon,
+				opacity: 1.0
+			}).addTo(map);
+			
+			// 使用者提供位置
+			function foundHandler(e) {
+				console.log("e", e);
+				marker.setLatLng(e.latlng); // 移動 marker
+				map.setView(e.latlng, 17);
+				moveTo(map); // 移動到指定座標（平滑 || 縮放 效果）
+				panBy(map); // 移動 x, y 位置
+			}
+			map.on('locationfound', foundHandler);
+
+			
+			//繪製點線面
+			//點
+			const POI = L.marker([22.99708166668444, 120.21293927276623], {
+				title: '台南車站', // 跟 <a> 的 title 一樣
+				opacity: 5.0
+				}).addTo(map).bindPopup("台南車站");
+				
+			//線
+			var polyline = L.polyline([
+			[23.020, 120.289],
+			[22.99708166668444, 120.21293927276623]],
+			{
+				color: 'yellow'
+			}).addTo(map)
+			
+			//面
+			   //圓形
+			   var circle = L.circle(
+				  [22.988, 120.220],   // 圓心座標
+				  1000,                // 半徑（公尺）
+				  {
+					color: 'red',      // 線條顏色
+					fillColor: '#f03', // 填充顏色
+					fillOpacity: 0.5   // 透明度
+				  }
+				).addTo(map)
+				
+			   //多邊形
+			   var polygon = L.polygon([
+				  [22.992, 120.289],
+				  [22.982, 120.299],
+				  [22.970, 120.267],
+				  [22.990, 120.267]
+				]).addTo(map);
+				
+			//點擊事件
+			const popup = L.popup();
+			function onMapClick(e) {
+			  let lat = e.latlng.lat; // 緯度
+			  let lng = e.latlng.lng; // 經度
+			  popup
+				.setLatLng(e.latlng)
+				.setContent(`緯度：${lat}<br/>經度：${lng}`)
+				.openOn(map);
+			}
+			map.on('click', onMapClick);
+			
+			//抽換底圖
+			
+			// 國土測繪中心 臺灣通用電子地圖
+			const baseEMAP = L.tileLayer('https://wmts.nlsc.gov.tw/wmts/EMAP/default/GoogleMapsCompatible/{z}/{y}/{x}', {
+			  maxNativeZoom: 20,
+			  maxZoom: 20
+			});
+			// 國土測繪中心 正射影像圖
+			const basePHOTO2 = L.tileLayer('https://wmts.nlsc.gov.tw/wmts/PHOTO2/default/GoogleMapsCompatible/{z}/{y}/{x}', {
+			  maxNativeZoom: 20,
+			  maxZoom: 20,
+			  minZoom: 7
+			});
+			// 國土利用現況調查成果圖
+			const baseU = L.tileLayer("https://wmts.nlsc.gov.tw/wmts/LUIMAP/default/GoogleMapsCompatible/{z}/{y}/{x}", {
+			  maxZoom: 17
+			});
+			
+			var baselayers = {
+			  'OpenStreetMap.Mapnik': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
+			  'OpenStreetMap.DE': L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'),
+			  'OpenStreetMap.CH': L.tileLayer('https://tile.osm.ch/switzerland/{z}/{x}/{y}.png'),
+			  'OpenStreetMap.France':  L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png'),
+			  'OpenStreetMap.HOT': L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'),
+			  'OpenStreetMap.BZH': L.tileLayer('https://tile.openstreetmap.bzh/br/{z}/{x}/{y}.png'),
+			  'OpenTopoMap': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png'),
+			  '臺灣通用電子地圖': baseEMAP,
+			  '正射影像圖': basePHOTO2,
+			  '國土利用現況調查成果圖' : baseU
+			};
+			var overlays = {};
+			L.control.layers(baselayers, overlays).addTo(map);
+			baselayers['OpenStreetMap.Mapnik'].addTo(map);
+
+		</script>
 </body>
+</html>

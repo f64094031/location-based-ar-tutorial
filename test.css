@@ -1,19 +1,20 @@
-#click {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 0px;
-  left: center;
-  justify-content: center;
-  border: 2px solid white;
-  background-color: transparent;
-  width: 2em;
-  height: 2em;
-  border-radius: 100%;
-  font-size: 2em;
-  background-color: rgba(0, 0, 0, 0.4);
-  color: white;
-  outline: none;
+#click{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: center;
+    justify-content: center;
+    border: 2px solid white;
+    background-color: transparent;
+    width: 2em;
+    height: 2em;
+    border-radius: 100%;
+    font-size: 2em;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    outline: none;
+    z-index: 9;
 }
 
 #hello {
@@ -32,4 +33,63 @@
   background-color: rgba(0, 0, 0, 0.4);
   color: white;
   outline: none;
+  z-index: 9;
+}
+
+#demo{
+  position:absolute;
+  top: 500px;
+  left: 50%;
+  z-index: 999;
+  color: red;
+  padding: 50px;
+}
+
+#demo2{
+  position:absolute;
+  top: 500px;
+  left: 50%;
+  z-index: 999;
+  color: blue;
+  padding: 50px;
+}
+
+#apidata{
+  position:absolute;
+  top: 10%;
+  left: 50%;
+  z-index: 999;
+  color: green;
+  padding: 50px;
+}
+
+.button{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  /* top: 500px; */
+  left: 50px;
+  justify-content: center;
+  border: 2px solid white;
+  background-color: transparent;
+  width: 2em;
+  height: 2em;
+  border-radius: 100%;
+  font-size: 2em;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  outline: none;
+  z-index: 9;
+}
+
+.abc{
+  top: 500px;
+}
+
+#map {
+  position:absolute;
+  top: 400px;
+  left: 50%;
+  z-index: 99;
+  padding: 400px;
 }
