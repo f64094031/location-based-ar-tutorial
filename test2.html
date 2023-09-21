@@ -43,7 +43,7 @@
 		<hr>
 			
 		<div id="apidata"><p>資料</p></div>
-		<button class="button abc" onclick="getdata()">獲取資料</button>
+		<button class="abc" onclick="getdata()">獲取資料</button>
 		<script>
 			function getdata(){
 				fetch("https://data.epa.gov.tw/api/v2/aqx_p_432?format=json&language=zh&api_key=4dcde793-5890-4f3e-af67-58a652e0a1fc&filters=county,EQ,%E8%87%BA%E5%8D%97%E5%B8%82").then(function(response){
