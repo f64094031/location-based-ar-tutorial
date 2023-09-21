@@ -27,8 +27,54 @@
 </head>
 
 <body style='margin: 0; overflow: hidden;'>
+  
+  <div id="apidata"
+    onmouseover="over(this);"
+		onmouseout="out(this);"
+		onmousedown="down(this);"
+		onmouseup="up(this);"><p>資料</p>
+  </div>
 
-  <div id="apidata"><p>資料</p></div>
+<script>
+	function over(elem){
+		elem.style.backgroundColor="#ddaaaa";
+	}
+	function out(elem){
+		elem.style.backgroundColor="#ffcccc";
+	}
+	function down(elem){
+    fetch("https://data.moenv.gov.tw/api/v2/aqx_p_432?api_key=4dcde793-5890-4f3e-af67-58a652e0a1fc&filters=county,EQ,%E8%87%BA%E5%8D%97%E5%B8%82").then(function(response){
+					//https://data.epa.gov.tw/api/v2/aqx_p_149?format=json&language=zh&api_key=4dcde793-5890-4f3e-af67-58a652e0a1fc
+					return response.json();
+				}).then(function(data){
+					console.log(data);
+					let one=data;
+					console.log(one.records[3].status);
+					document.getElementById("apidata").innerHTML ="<div>" + "測站名稱:" + one.records[3].sitename + "<br>"
+                                                                + "縣市 " + one.records[3].county + "<br>"
+                                                                + "空氣品質指標 " + one.records[3].aqi + "<br>" 
+                                                                + "狀態 " + one.records[3].status + "<br>"
+                                                                + "二氧化硫（ppb） " + one.records[3].so2 + "<br>"
+                                                                + "一氧化碳（ppm） " + one.records[3].co + "<br>"
+                                                                + "臭氧（ppb） " + one.records[3].o3 + "<br>"
+                                                                + "臭氧8小時移動平均（ppb） " + one.records[3].o3_8hr + "<br>"
+                                                                + "懸浮微粒（μg\/m3） " + one.records[3].pm10 + "<br>" 
+                                                                + "細懸浮微粒（μg\/m3） " + one.records[3]["pm2.5"] + "<br>" 
+                                                                + "二氧化氮（ppb） " + one.records[3]["no2"] + "<br>" 
+                                                                + "氮氧化物（ppb） " + one.records[3]["nox"] + "<br>" 
+                                                                + "一氧化氮（ppb） " + one.records[3]["no"] + "<br>" 
+                                                                + "風速（m\/sec） " + one.records[3]["wind_speed"] + "<br>" 
+                                                                + "資料發布時間 " + one.records[3]["publishtime"] + "<div>";
+        });
+    
+	}
+	function up(elem){
+    getdata();
+		elem.style.fontWeight="normal";
+    document.getElementById("apidata").innerHTML ="<div>" + "空氣品質資料:" + one.records[3].sitename + ": " + one.records[3].status + "<div>";
+	}
+</script>
+  
   <button class="button abc" onclick="getdata()">獲取資料</button>
   <script>
     function getdata(){
