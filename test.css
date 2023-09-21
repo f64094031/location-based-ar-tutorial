@@ -86,7 +86,7 @@
 
 .abc{
   top: 500px;
-  z-index: 999;
+  z-index: 1000;
 }
 
 #map {
