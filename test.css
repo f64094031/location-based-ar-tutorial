@@ -97,3 +97,13 @@
   height: 35%;
   width: 45%;
 }
+
+#viewDiv {
+  position:absolute;
+  top: 60%;
+  left: 50%;
+  z-index: 99;
+  padding: 0px;
+  height: 35%;
+  width: 45%;
+}
