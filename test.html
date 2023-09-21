@@ -1,83 +1,82 @@
-
- <!DOCTYPE html>
 <html>
+  <head>
 
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>GeoAR.js demo</title>
-    <script src='https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js'></script>
-    <script src='https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js'></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    
-   
-</head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="./test.css"/>
+		<style>
+			/* Optional: Makes the sample page fill the window. */
+			html, body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
-<link rel="stylesheet" href="./styles/index.css">
+  </head>
+  <body>
+		
+		<h2>What Can JavaScript Do?</h2>
+		<div id="demo"><p>JavaScript can change HTML content.</p></div>
+		 <!-- 按下button時，觸發反應  -->
+		<button class="button" onclick="document.getElementById('demo').innerHTML='Hello JavaScript!'">Click me!</button>
+		<hr>
 
-<!--下一行是接OSM的-->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+		<h2>Click the button to display a time-based greeting</h2>
+		 <!-- 按下button時，觸發myfunction()之反應  -->
+		<button class="button" onclick="myFunction()">Hello!</button>
+		<div id="demo2"><p></p></div>
+		<script>
+		function myFunction() {  
+			console.log("123")             
+			var hour = new Date().getHours(); 
+			var greeting;
+			if (hour < 12) {    
+				greeting = "Good morning! ";
+			} else {
+				greeting = "Good evening! ";
+			}
+			document.getElementById("demo2").innerHTML = greeting + "Now is " + hour + " o'clock.";
+		}
+		</script>
+		<hr>
+			
+		<div id="apidata"><p>資料</p></div>
+		<button class="button abc" onclick="getdata()">獲取資料</button>
+		<script>
+			function getdata(){
+				fetch("https://data.epa.gov.tw/api/v2/aqx_p_432?format=json&language=zh&api_key=4dcde793-5890-4f3e-af67-58a652e0a1fc&filters=county,EQ,%E8%87%BA%E5%8D%97%E5%B8%82").then(function(response){
+					//https://data.epa.gov.tw/api/v2/aqx_p_149?format=json&language=zh&api_key=4dcde793-5890-4f3e-af67-58a652e0a1fc
+					return response.json();
+				}).then(function(data){
+					console.log(data);
+					let one=data;
+					console.log(one.records[3].status);
+					document.getElementById("apidata").innerHTML ="<div>" + "空氣品質資料:" + one.records[3].sitename + ": " + one.records[3].status + "<div>";
+				});
+			}
+		</script>
 
+    <a-scene>
+		<a-assets>
+			<img id = "mental-NRM" src="./pic/tex.jpg">
+			<img id="brick" src="./pic/tex.jpg">
+			<img id="sky" src="./pic/146553719.jpg">
+			<img id="arrow" src="./pic/arrow.png">
+    		<a-assets-item id="articuno" src="./assets/articuno/scene.gltf"></a-assets-item>
+			<a-assets-item id="nav" src="./assets/nav/nav4.gltf"></a-assets-item>
+		</a-assets>
 
-
-<body style='margin: 0; overflow: hidden;'>
-    
-    <a-scene 
-        cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'
-        raycaster="objects: [gps-entity-place];useWorldCoordinates:true"
-        vr-mode-ui='enabled: false' 
-                arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
-    <a-camera gps-camera rotation-reader>
-        <img src="https://dylan1211-hub.github.io/smalltest/assets/heart.png" 
-        style="width:25% ; height:15% ; position:fixed; left: 80px; top: 320px;display: block;"/>
-        <div class="checkbox">
-            <p>💡推薦層級:</p>
-            <p>
-               <label for="gold"> <input type="checkbox" name="color" value="gold" id="gold"  />🥇大推</label>
-            </p>
-            <p>
-               <label for="silver"><input type="checkbox" name="color" value="silver" id="silver"  />🥈推推</label>
-            </p>
-            <p>
-               <label for="copper"><input type="checkbox" name="color" value="copper" id="copper"  />🥉推</label>
-            </p>
-            
-            <!--<p>
-                <label for="red"><input type="checkbox" name="color" value="red" id="red"  />🔴熱賣特惠</label>
-             </p>
-             <p>
-                <label for="white"><input type="checkbox" name="color" value="white" id="white"  />⚪其他</label>
-             </p>-->
-       
-            <button id="btn" class="cbtn">確認</button>
-        </div>
         
-    </a-camera>
+        <a-entity 							
+			gltf-model="#nav" 
+			scale="0.5 0.5 0.5"
+			position="3 5 50">
+		</a-entity>
 
-            
+        <a-box position="-1 1.6 -5" animation="property: position; to: 1 8 -10; dur: 2000; easing: linear; loop: true" color="tomato"></a-box>
+
     </a-scene>
-    
-    
-    <div id="map"></div>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="bundle.js"></script>
-    
-
-    <!--<div id="store" >
-    <script>
-    var data=
-    [
-    {"type":"men's fashions","lat":22.99792822,"lon":120.2205533,"building":"Resource","name":"Lif8","item":"T-shirt","sales":50,"hit_x":"v","website":"http:\/\/www.dream-mall.com.tw\/Brand\/Details\/8992232f-46f7-4e44-a7fc-16baa1baf7dc","trek2there":"arcgis-trek2there:\/\/?stop=22.99792822,120.2205533","hit_y":"v"},
-    {"type":"kid's fashions","lat":22.99668903,"lon":120.2195844,"building":"Museum","name":"Anny","item":"hat","sales":50,"hit_x":null,"website":"http:\/\/www.dream-mall.com.tw\/Brand\/Details\/a12e86a7-d3ea-4250-9349-332eded300b5","trek2there":"arcgis-trek2there:\/\/?stop=22.99668903,120.2195844","hit_y":null},
-    {"type":"drink and snack","lat":22.99654269,"lon":120.2185315,"building":"Multi-Purpose Building","name":"HANLIN TEA HOUSE","item":"bubble tea","sales":50,"hit_x":"v","website":"http:\/\/www.dream-mall.com.tw\/Brand\/Details\/75caa17f-49f6-425c-b494-9ce0051d22af","trek2there":"arcgis-trek2there:\/\/?stop=22.99654269,120.2185315","hit_y":"v"}
-    ]
-        for(i=0;i<=data.length;i++)
-        {
-          document.innerHTML = data.name+"<br/>";
-        }
-    </script>
-    </div>-->
-    
-</body>
-
+  </body>
 </html>

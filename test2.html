@@ -65,6 +65,7 @@
 				<img id="sky" src="./pic/146553719.jpg">
 				<img id="arrow" src="./pic/arrow.png">
 				<a-assets-item id="articuno" src="./assets/articuno/scene.gltf"></a-assets-item>
+				<a-assets-item id="nav" src="./assets/nav/nav.gltf"></a-assets-item>
 			</a-assets>
 		<a-box 
 			position="-1 0.5 -3" 
@@ -173,14 +174,17 @@
 							
 		</a-entity>
 
-		<a-entity 
-							geometry="primitive: cone"
+		<a-entity 							
 							gltf-model="#articuno" 
 							scale="0.1 0.1 0.1"
 							position="5 5 5">
 		</a-entity>
 
-		<a-gltf-model src="#articuno" ></a-gltf-model>
+		<a-entity 							
+							gltf-model="#nav" 
+							scale="0.5 0.5 0.5"
+							position="3 3 3">
+		</a-entity>
 
 		<a-entity position="0 0.5 0">
 			<a-animation attribute="rotation"
@@ -331,39 +335,39 @@
 
 			
 			//繪製點線面
-			//點
+			點
 			const POI = L.marker([22.99708166668444, 120.21293927276623], {
 				title: '台南車站', // 跟 <a> 的 title 一樣
 				opacity: 5.0
 				}).addTo(map).bindPopup("台南車站");
 				
-			//線
-			var polyline = L.polyline([
-			[23.020, 120.289],
-			[22.99708166668444, 120.21293927276623]],
-			{
-				color: 'yellow'
-			}).addTo(map)
+			// //線
+			// var polyline = L.polyline([
+			// [23.020, 120.289],
+			// [22.99708166668444, 120.21293927276623]],
+			// {
+			// 	color: 'yellow'
+			// }).addTo(map)
 			
-			//面
-			   //圓形
-			   var circle = L.circle(
-				  [22.988, 120.220],   // 圓心座標
-				  1000,                // 半徑（公尺）
-				  {
-					color: 'red',      // 線條顏色
-					fillColor: '#f03', // 填充顏色
-					fillOpacity: 0.5   // 透明度
-				  }
-				).addTo(map)
+			// //面
+			//    //圓形
+			//    var circle = L.circle(
+			// 	  [22.988, 120.220],   // 圓心座標
+			// 	  1000,                // 半徑（公尺）
+			// 	  {
+			// 		color: 'red',      // 線條顏色
+			// 		fillColor: '#f03', // 填充顏色
+			// 		fillOpacity: 0.5   // 透明度
+			// 	  }
+			// 	).addTo(map)
 				
-			   //多邊形
-			   var polygon = L.polygon([
-				  [22.992, 120.289],
-				  [22.982, 120.299],
-				  [22.970, 120.267],
-				  [22.990, 120.267]
-				]).addTo(map);
+			//    //多邊形
+			//    var polygon = L.polygon([
+			// 	  [22.992, 120.289],
+			// 	  [22.982, 120.299],
+			// 	  [22.970, 120.267],
+			// 	  [22.990, 120.267]
+			// 	]).addTo(map);
 				
 			//點擊事件
 			const popup = L.popup();
@@ -413,4 +417,4 @@
 
 		</script>
   </body>
-</html>
+	</html>
