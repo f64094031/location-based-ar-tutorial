@@ -254,22 +254,6 @@
           gps-entity-place="longitude: 120.219635; latitude: 22.998484;"></a-entity>
       </a-entity>
 
-      <a-entity 
-			id="Tank"
-			blood="blood_type:A-type; oxygen_level: heigh"
-			geometry="primitive: sphere" 
-			material="color: red"
-      gps-entity-place="longitude: 120.21798595771396; latitude: 23.008400636772265;" 
-			radius="1.25">
-		</a-entity>
-
-		<a-entity 
-			id="Judy"
-			blood="blood_type:AB-type; oxygen_level: low"
-			geometry="primitive: box" 
-			material="color: blue"
-			position="0 0 0" >
-		</a-entity>
       <!-- a-frame "position" parameter to assign a y-value to change the height of the content. -->
       <!-- This value should be entered as meters above or below (if negative) the current camera height. -->
       
@@ -329,10 +313,8 @@
 
         <a-entity 
           id="Home"
-          name="My home"
-          Height="3"
-          floor="3"
-          geometry="primitive: sphere" 
+          info="name:My home; floor:3; Height:9"
+          geometry="primitive: box" 
           radius="0.1"
           gps-entity-place="longitude: 120.21798595771396; latitude:23.008400636772265;"
           position="0 2 0"
