@@ -1,0 +1,11 @@
+Model Information:
+* title:	Basic Streetlantern
+* source:	https://sketchfab.com/3d-models/basic-streetlantern-73f702e0f8a64c30b487a914d80ac32c
+* author:	Sluffind (https://sketchfab.com/Sluffind)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Basic Streetlantern" (https://sketchfab.com/3d-models/basic-streetlantern-73f702e0f8a64c30b487a914d80ac32c) by Sluffind (https://sketchfab.com/Sluffind) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

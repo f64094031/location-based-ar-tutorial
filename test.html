@@ -150,6 +150,39 @@
 			id="mario">
 		</a-entity>
 
+		<script>
+			function createInfoBoard(itemPos, textArr) {
+			let userRot = getCamRot();
+			let enti = document.createElement("a-entity");
+			document.querySelector("a-scene").appendChild(enti);
+			enti.setAttribute("class", "tarInfo");
+			enti.setAttribute("color", "white");
+			enti.setAttribute("position", {
+				x: itemPos["x"] -2*Math.cos(Math.PI*userRot[1]/180),
+				y: itemPos["y"] + 2,
+				z: itemPos["z"] +2*Math.sin(Math.PI*userRot[1]/180),
+			});
+			
+			enti.setAttribute("rotation", { x: 0, y: userRot[1], z: 0 });
+			let box = document.createElement("a-box");
+			document.querySelector(".tarInfo").appendChild(box);
+			box.setAttribute("color", "white");
+			box.setAttribute("height", 2);
+			box.setAttribute("width", 3);
+			box.setAttribute("depth", "0.025");
+
+			let textPrefix = "anchor: center; width: 2; color: black; value: ";
+			let text = document.createElement("a-text");
+			for (let item of textArr) {
+				textPrefix += item + "\n";
+			}
+			document.querySelector(".tarInfo").appendChild(text);
+			text.setAttribute("position", { x: 0, y: 0, z: 0.025 });
+			text.setAttribute("width", 30);
+			text.setAttribute("text", textPrefix);
+			text.setAttribute("wrap-count", 20);
+		}
+		</script>
 		
 
 	

@@ -37,6 +37,7 @@
 				console.log(Geo);
 
 				let data = this.data;
+
 				
 				//加入event listener
 				this.el.addEventListener('click', function(obj){
@@ -48,7 +49,27 @@
 					console.log(oldPosition);
           //改變"資料"
           document.getElementById("try").innerHTML = "success!";
-				});
+
+          //將資訊顯示至板子上
+          const infoText = {
+            name: "Name: ",
+            floor: "Floor",
+          };
+            let att = obj.srcElement;
+            const infoArr = [];
+            let attPos = att.getAttribute("position");
+            infoText.name += "Good Job";
+            infoArr.push(infoText.name);
+            infoText.floor += "123";
+            infoArr.push(infoText.floor);
+
+            if (document.querySelector(".tarInfo")) 
+            document.querySelector(".tarInfo").remove();
+            console.log(infoText);
+
+            createInfoBoard(attPos, infoArr);
+          });
+        
 			},
 			update: function () {},
 			tick: function () {},
@@ -57,6 +78,52 @@
 			play: function () {}
 		});
 		</script>
+
+    <script>
+      function createInfoBoard(itemPos, textArr) {
+        let userRot = getCamRot();
+        let enti = document.createElement("a-entity");
+        document.querySelector("a-scene").appendChild(enti);
+        enti.setAttribute("class", "tarInfo");
+        enti.setAttribute("color", "white");
+        enti.setAttribute("position", {
+          x: itemPos["x"] -2*Math.cos(Math.PI*userRot[1]/180),
+          y: itemPos["y"] + 2,
+          z: itemPos["z"] +2*Math.sin(Math.PI*userRot[1]/180),
+        });
+        
+        enti.setAttribute("rotation", { x: 0, y: userRot[1], z: 0 });
+        let box = document.createElement("a-box");
+        document.querySelector(".tarInfo").appendChild(box);
+        box.setAttribute("color", "black");
+        box.setAttribute("height", 2);
+        box.setAttribute("width", 3);
+        box.setAttribute("depth", "0.025");
+
+        let textPrefix = "anchor: center; width: 2; color: white; value: ";
+        let text = document.createElement("a-text");
+        for (let item of textArr) {
+          textPrefix += item + "\n";
+        }
+        document.querySelector(".tarInfo").appendChild(text);
+        text.setAttribute("position", { x: 0, y: 0, z: 0.025 });
+        text.setAttribute("width", 30);
+        text.setAttribute("text", textPrefix);
+        text.setAttribute("wrap-count", 20);
+      }
+
+      function getCamRot() {
+        // return an array contains rotation of x, y, z in order
+        const rotation = document.querySelector("#camera").getAttribute("rotation");
+        const rotarr = [];
+
+        for (let [key, val] of Object.entries(rotation)) {
+          rotarr.push(val);
+        }
+
+        return rotarr;
+      }
+    </script>
 
     <style>
 		html, body {
