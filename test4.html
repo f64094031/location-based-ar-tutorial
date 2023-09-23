@@ -28,6 +28,11 @@
 
 <body style='margin: 0; overflow: hidden;'>
   
+  <!--畫面中間的小圓點  -->
+  <a-camera id="camera"><a-cursor></a-cursor></a-camera>
+
+
+  
   <div id="apidata"
     onmouseover="over(this);"
 		onmouseout="out(this);"
@@ -73,8 +78,7 @@
 		elem.style.fontWeight="normal";
     document.getElementById("apidata").innerHTML ="<div>" + "空氣品質資料:" + one.records[3].sitename + ": " + one.records[3].status + "<div>";
 	}
-</script>
-  
+</script>  
   <button class="button abc" onclick="getdata()">獲取資料</button>
   <script>
     function getdata(){
@@ -88,7 +92,7 @@
 					document.getElementById("apidata").innerHTML ="<div>" + "空氣品質資料" + "<br>" + one.records[3].sitename + ": " + one.records[3].status + "<div>";
 				});
     }
-  </script>
+</script>
 
     <a-scene
         vr-mode-ui="enabled: false"
@@ -111,7 +115,7 @@
           gps-entity-place="longitude: 120.217926; latitude: 23.008419;" >
         </a-image> -->
 
-        <a-image src="#arrow" rotation="-100 -90 0" scale="1 1 1" side="double"
+        <a-image src="#arrow" rotation="-90 -100 0" scale="1 1 1" side="double"
           gps-entity-place="longitude: 120.21962339676706; latitude: 22.998394890831605;" 
           width="2" 
           height="55" 			                
@@ -218,15 +222,27 @@
           gltf-model="#nav" 
           scale="10 10 10"
           gps-entity-place="longitude: 120.219635; latitude: 22.998484;"></a-entity>
-     </a-entity>
+      </a-entity>
+
+      <a-entity 
+        text="value: Hello World;"
+        gps-entity-place="longitude: 120.21793515707928; latitude:23.008439768589962;"
+        color="#0000AA;">
+      </a-entity>
 
         <!--position="-14.5 15 0"-->
         <!--不能以中文字-->
         <a-text 
           value="My home"
-          side="double"
+          side="double;"
           gps-entity-place="longitude: 120.217975; latitude: 23.008345;">
         </a-text>
+
+        <a-sphere 
+          gps-entity-place="longitude: 120.217975; latitude: 23.008345;"
+			    radius="3" 
+			    color="#EF2D5E">
+		    </a-sphere>
 
         <a-text 
           value="Kaiyuan Elementary School" 
@@ -242,6 +258,12 @@
           gps-entity-place="longitude: 120.21999459727598; latitude: 22.998706010448853;">
         </a-text>
 
+        <a-sphere 
+          gps-entity-place="longitude: 120.21999459727598; latitude: 22.998706010448853;"
+			    radius="3" 
+			    color="#EF2D5E">
+		    </a-sphere>
+
         <!-- <a-text 
           value="geomatics2" 
           color="#00AA00"
@@ -253,24 +275,15 @@
         <a-text 
           value="Department of MATH" 
           scale="5 5 5"
-          color="#AAAAAA"
+          color="#FFFFF"
           side="double"
           gps-entity-place="longitude: 120.21935984659088; latitude: 22.998651691398333;">
         </a-text>
 
-        <!-- <a-text 
-          value="Department of Civil Engineering" 
-          color="#AA0000"
-          scale="10 10 10"
-          side="double" 
-					rotation="0 -90 0"
-          gps-entity-place="longitude: 120.2198716; latitude: 22.9992252;">
-        </a-text> -->
-
         <a-text 
           value="Department of Chemistry" 
           scale="5 5 5"
-          color="#AAAAAA"
+          color="#FFFFF"
           side="double"
           gps-entity-place="longitude: 120.21970910424058; latitude: 22.99816028155562;">
         </a-text>
@@ -283,6 +296,52 @@
 
         <a-camera gps-camera rotation-reader></a-camera>
 	</a-scene>
+
+  <script>
+    document.getElementById('clickme').onclick = function(e) {
+      // e = Mouse click event.
+      let rect = e.target.getBoundingClientRect();
+      let x = e.clientX - rect.left; //x position within the element.
+      let y = e.clientY - rect.top;  //y position within the element.
+      let ax = -50+y*7/9 -180.730 ;
+      let az = 350-x*7/9-50 - 27.659;
+      console.log(x, ax)
+      const cam = document.querySelector("#camera");
+      cam.setAttribute("position", `${ax} ${cam.getAttribute("position").y} ${az}`);
+    }
+
+    function createInfoBoard(itemPos, textArr) {
+      let userRot = getCamRot();
+      let enti = document.createElement("a-entity");
+      document.querySelector("a-scene").appendChild(enti);
+      enti.setAttribute("class", "tarInfo");
+      enti.setAttribute("color", "white");
+      enti.setAttribute("position", {
+        x: itemPos["x"] -2*Math.cos(Math.PI*userRot[1]/180),
+        y: itemPos["y"] + 2,
+        z: itemPos["z"] +2*Math.sin(Math.PI*userRot[1]/180),
+      });
+      
+      enti.setAttribute("rotation", { x: 0, y: userRot[1], z: 0 });
+      let box = document.createElement("a-box");
+      document.querySelector(".tarInfo").appendChild(box);
+      box.setAttribute("color", "white");
+      box.setAttribute("height", 2);
+      box.setAttribute("width", 3);
+      box.setAttribute("depth", "0.025");
+
+      let textPrefix = "anchor: center; width: 2; color: black; value: ";
+      let text = document.createElement("a-text");
+      for (let item of textArr) {
+        textPrefix += item + "\n";
+      }
+      document.querySelector(".tarInfo").appendChild(text);
+      text.setAttribute("position", { x: 0, y: 0, z: 0.025 });
+      text.setAttribute("width", 30);
+      text.setAttribute("text", textPrefix);
+      text.setAttribute("wrap-count", 20);
+    }
+  </script>
 
   <div id="viewDiv"></div>
 	  <script>  
@@ -364,5 +423,6 @@
 		  
 		});
 	  </script>
+    
 </body>
 </html>

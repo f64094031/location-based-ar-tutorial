@@ -1,19 +1,62 @@
 <html>
   <head>
-
+		<!-- BOOTSTRAP 5 -->
+    <!-- Latest compiled and minified CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- A-Frame API via CDN -->
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="./test.css"/>
-		<style>
-			/* Optional: Makes the sample page fill the window. */
-			html, body {
-				height: 100%;
-				margin: 0;
-				padding: 0;
-			}
+
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 		</style>
 	
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
+		<script>
+			AFRAME.registerComponent('blood', {
+			schema: {
+				blood_type: {type: "string", default: "O-type"}, 
+				oxygen_level: {type: "string", default: "normal"}
+			},
+			init: function () {
+				//列出這個data屬性
+				console.log(this.data);
+				//列出這個element資料
+				console.log(this.el);
+				let Chang = document.querySelector('#Tank');			
+				console.log(Chang);
+
+				let data = this.data;
+				
+				//加入event listener
+				this.el.addEventListener('click', function(obj){
+					//列出data屬性
+					console.log(data);
+					//列出element背後的資料
+					console.log(obj);
+					let oldPosition = obj.srcElement.getAttribute('position');
+					console.log(oldPosition);
+
+					//改變element的位置
+					let newPositionY = oldPosition.y + 0.2;
+					obj.srcElement.setAttribute('position', oldPosition.x + " " + newPositionY + " " + oldPosition.z );
+
+				});
+
+			},
+			update: function () {},
+			tick: function () {},
+			remove: function () {},
+			pause: function () {},
+			play: function () {}
+		});
+		</script>
+		
   </head>
   <body>
 		
@@ -59,6 +102,11 @@
 		</script>
 
     <a-scene>
+
+		
+		<!--畫面中間的小圓點  -->
+		<a-camera id="camera"><a-cursor></a-cursor></a-camera>
+
 		<a-assets>
 			<img id = "mental-NRM" src="./pic/tex.jpg">
 			<img id="brick" src="./pic/tex.jpg">
@@ -69,13 +117,45 @@
 		</a-assets>
 
         
-        <a-entity 							
+    <a-entity 							
 			gltf-model="#nav" 
 			scale="0.5 0.5 0.5"
 			position="3 5 50">
 		</a-entity>
 
-        <a-box position="-1 1.6 -5" animation="property: position; to: 1 8 -10; dur: 2000; easing: linear; loop: true" color="tomato"></a-box>
+		<!-- <a-sphere 
+			position="0 1.25 -5" 
+			radius="1.25" 
+			color="#EF2D5E">
+		</a-sphere> -->
+
+		<a-entity 
+			id="Tank"
+			blood="blood_type:A-type; oxygen_level: heigh"
+			geometry="primitive: sphere" 
+			material="color: red"
+			position="0 1.25 -5" 
+			radius="1.25">
+		</a-entity>
+
+		<a-entity 
+			id="Judy"
+			blood="blood_type:AB-type; oxygen_level: low"
+			geometry="primitive: box" 
+			material="color: blue"
+			position="0 0 0" >
+		</a-entity>
+		
+		<a-entity 
+			id="mario">
+		</a-entity>
+
+		
+
+	
+
+    <a-box position="-1 1.6 -5" animation="property: position; to: 1 8 -10; dur: 2000; easing: linear; loop: true" color="tomato"></a-box>
+
 
     </a-scene>
   </body>

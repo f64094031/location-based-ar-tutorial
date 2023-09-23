@@ -1,0 +1,296 @@
+<html>
+  <head>
+    <!-- BOOTSTRAP 5 -->
+    <!-- Latest compiled and minified CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- A-Frame API via CDN -->
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+    <script src="./main.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <!-- 75 10 13 -->
+      <a-entity id="cameraWrapper" position="180.730 0 27.659">
+        <a-camera id="camera" user-height="1.8"><a-cursor></a-cursor></a-camera>
+      </a-entity>
+
+      <a-assets>
+        <!-- <a-asset-item id="ncku" src="./models/ncku_building.gltf"></a-asset-item> -->
+        <a-asset-item id="geomath" src="./models/GeoMathBD.gltf"></a-asset-item>
+        <a-asset-item id="bxg" src="./models/bxg.gltf"></a-asset-item>
+        <a-asset-item id="dksg" src="./models/dksg.gltf"></a-asset-item>
+        <a-asset-item id="gzt" src="./models/gzt.gltf"></a-asset-item>
+        <a-asset-item id="hssg" src="./models/hssg.gltf"></a-asset-item>
+        <a-asset-item id="lhsydl" src="./models/lhsydl.gltf"></a-asset-item>
+        <a-asset-item id="yss" src="./models/yss.gltf"></a-asset-item>
+        <a-asset-item id="zh2g" src="./models/zh2g.gltf"></a-asset-item>
+        <a-asset-item id="zhdl" src="./models/zhdl.gltf"></a-asset-item>
+        <a-asset-item id="olsg" src="./models/olsg.gltf"></a-asset-item>
+        <a-asset-item
+          id="zsdlstair"
+          src="./models/zsdlstair.gltf"
+        ></a-asset-item>
+        <a-asset-item id="zsdl" src="./models/zsdl.gltf"></a-asset-item>
+        <a-asset-item
+          id="manhole"
+          src="./models/manhole/scene.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="streetlight"
+          src="./models/basic_streetlantern/scene.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="leaftree"
+          src="./models/flow_tree/scene.gltf"
+        ></a-asset-item>
+        <a-asset-item id="sw" src="./models/sw.gltf"></a-asset-item>
+        <a-asset-item id="rd" src="./models/rd.gltf"></a-asset-item>
+        <a-asset-item id="of" src="./models/of.gltf"></a-asset-item>
+        <a-asset-item id="sun" src="./models/sun/scene.gltf"></a-asset-item>
+        <a-asset-item id="cloud" src="./models/cloud/scene.gltf"></a-asset-item>
+        <img id="ground" src="./images/soil.jpg" />
+        <!-- <img id="grass" src="./images/grass2.jpg" /> -->
+        <img id="sky" src="./images/sky.jpg" />
+      </a-assets>
+
+      <!-- <a-box showinfo position="1 0.5 0" rotation="0 45 0" color="#4CC3D9"></a-box>
+      <a-sphere showinfo position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+      <a-cylinder showinfo position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder> -->
+      <a-plane
+        position="125 -.1 150"
+        rotation="-90 0 0"
+        width="500"
+        height="500"
+        material="src: #ground; repeat:50 50; transparent: true; opacity: 0.95"
+        shadow="cast: false; receive: true"
+        scale="1 1 1"
+      ></a-plane>
+      <a-sky material="src: #sky; repeat: 2 2" opacity="1"></a-sky>
+      <a-light type="ambient" color="white" penumbra="0.5"></a-light>
+      <a-light
+        type="point"
+        color="white"
+        distance="5"
+        position="0 200 0"
+      ></a-light>
+
+      <!-- sketchfab model box from (x: 4999.5, y: 500, z: 4999.5) to (x: -4999.5, y: -500, z: -4999.5) -->
+      <a-entity position="0 0 0" id="models">
+        <!-- <a-entity position="124.286 0 130.423" gltf-model="#ncku" scale="1 1 1" rotation="0 1.6 0"></a-entity> -->
+        <a-entity position="118.220 0 151.699" gltf-model="#of" scale="1 1 1" rotation="0 1.6 0"></a-entity>
+        <a-entity position="118.220 0 151.699" gltf-model="#rd" scale="1 1 1" rotation="0 1.6 0"></a-entity>
+        <a-entity position="118.220 0 151.699" gltf-model="#sw" scale="1 1 1" rotation="0 1.6 0"></a-entity>
+        <a-entity
+          showInfo="itemName: 博物館; height:"
+          position="116.579 0 150.94"
+          gltf-model="#bxg"
+          scale="1 1 1"
+          rotation="0 1.6 0"
+        ></a-entity>
+        <a-entity
+          position="119.383 0 122.62"
+          gltf-model="#dksg"
+          scale="1 1 1"
+          rotation="0 1.6 0"
+        ></a-entity>
+        <a-entity
+          position="121.397 0 136.104"
+          gltf-model="#gzt"
+          scale="1 1 1"
+          rotation="0 1.6 0"
+        ></a-entity>
+        <a-entity
+          position="118.179 0 152.271"
+          gltf-model="#hssg"
+          scale="1 1 1"
+          rotation="0 1.6 0"
+        ></a-entity>
+        <a-entity
+          position="118.229 0 150.362"
+          gltf-model="#lhsydl"
+          scale="1 1 1"
+          rotation="0 1.6 0"
+        ></a-entity>
+        <a-entity
+          position="109.596 0 134.174"
+          gltf-model="#yss"
+          scale="1 1 1"
+          rotation="0 1.6 0"
+        ></a-entity>
+        <a-entity
+          position="110.583 0 133.799"
+          gltf-model="#zh2g"
+          scale="1 1 1"
+          rotation="0 1.6 0"
+        ></a-entity>
+        <a-entity
+          position="116.613 0 150.411"
+          gltf-model="#zhdl"
+          scale="1 1 1"
+          rotation="0 1.6 0"
+        ></a-entity>
+        <a-entity
+          position="122.51 0 134.916"
+          gltf-model="#zsdlstair"
+          scale="1 1 1"
+          rotation="0 1.6 0"
+        ></a-entity>
+        <a-entity
+          position="123.161 0 134.766"
+          gltf-model="#zsdl"
+          scale="1 1 1"
+          rotation="0 1.6 0"
+        ></a-entity>
+        <a-entity
+          position="120.061 0 124.854"
+          gltf-model="#olsg"
+          scale="1 1 1"
+          rotation="0 1.6 0"
+        ></a-entity>
+        <a-entity
+          position="123.87 0 136.674"
+          gltf-model="#geomath"
+          scale="1 1 1"
+          rotation="0 1.6 0"
+        ></a-entity>
+        <a-entity
+          light="type: directional; intensity: 0.5"
+          position="0 200 0"
+          gltf-model="#sun"
+          scale="5 5 5"
+          rotation="20 70 0"
+        ></a-entity>
+      </a-entity>
+
+      <!-- BORDER: (2544350, 169850) => (2544050, 170100) ,  T22(2544322.341, 170030.725) -->
+      <!-- Transform to aframe local coordinate ==> BORDER: (0, 0, 0) => (250, 0, 300) ,  T22'(180.730, 0, 27.659) -->
+      <!-- <a-cylinder
+        showinfo
+        position="-50 0 -50"
+        radius="0.25"
+        height="100"
+        color="#FFC65D"
+      ></a-cylinder>
+      <a-cylinder
+        showinfo
+        position="300 0 -50"
+        radius="0.25"
+        height="100"
+        color="#FFC65D"
+      ></a-cylinder>
+      <a-cylinder
+        showinfo
+        position="-50 0 300"
+        radius="0.25"
+        height="100"
+        color="#FFC65D"
+      ></a-cylinder>
+      <a-cylinder
+        showinfo
+        position="300 0 300"
+        radius="0.25"
+        height="100"
+        color="#FFC65D"
+      ></a-cylinder> -->
+    </a-scene>
+
+    <div
+      style="
+        position: absolute;
+        right: 5em;
+        bottom: 2em;
+        width: 10em;
+        height: 10em;
+        padding: 0;
+        margin: 0;
+      "
+    >
+      <button
+        id="btnF"
+        type="button"
+        class="btn btn-secondary bold rounded-pill"
+        style="width: 4em; height: 4em; position: absolute; top: 0em; left: 3em"
+      >
+        &#8593;
+      </button>
+      <button
+        id="btnB"
+        type="button"
+        class="btn btn-secondary bold rounded-pill"
+        style="width: 4em; height: 4em; position: absolute; top: 6em; left: 3em"
+      >
+        &#8595;
+      </button>
+      <button
+        id="btnR"
+        type="button"
+        class="btn btn-secondary bold rounded-pill"
+        style="width: 4em; height: 4em; position: absolute; top: 3em; left: 6em"
+      >
+        &#8594;
+      </button>
+      <button
+        id="btnL"
+        type="button"
+        class="btn btn-secondary bold rounded-pill"
+        style="width: 4em; height: 4em; position: absolute; top: 3em; left: 0em"
+      >
+        &#8592;
+      </button>
+    </div>
+    <div
+      id="map-div"
+      style="
+        position: absolute;
+        left: 1em;
+        bottom: 1em;
+        width: 10em;
+        padding: 0;
+        margin: 0;
+      "
+    >
+      <!-- Button to Open the Modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mapModal">
+        Click to Teleport
+      </button>
+
+      <!-- The Modal -->
+      <div class="modal" id="mapModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Teleporting</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              Choose a location...
+              <div id="clickme" style="cursor: pointer;">
+                <img src="./images/VirtualWebMap.png" width="450px">
+              </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
