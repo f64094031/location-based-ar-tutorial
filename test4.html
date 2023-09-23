@@ -18,7 +18,7 @@
 	  <script src="https://js.arcgis.com/4.13/"></script>
 
     <!-- 測試 -->
-    <div id="try"><p>資料10</p></div>
+    <div id="try"><p>資料0</p></div>
 
     <!-- 加入屬性和... -->
     <script>
@@ -26,7 +26,7 @@
 			schema: {
 				name: {type: "string", default: "non"}, 
 				floor: {type: "string", default: "0"},
-        Height: {type: "string", default: "0"}
+        height: {type: "string", default: "0"}
 			},
 			init: function () {
 				//列出這個data屬性
@@ -37,8 +37,7 @@
 				console.log(Geo);
 
 				let data = this.data;
-
-				
+			
 				//加入event listener
 				this.el.addEventListener('click', function(obj){
 					//列出data屬性
@@ -53,15 +52,18 @@
           //將資訊顯示至板子上
           const infoText = {
             name: "Name: ",
-            floor: "Floor",
+            floor: "Floor: ",
+            height: "Height: ",
           };
             let att = obj.srcElement;
             const infoArr = [];
             let attPos = att.getAttribute("position");
-            infoText.name += "Good Job";
+            infoText.name +=  data.name;
             infoArr.push(infoText.name);
-            infoText.floor += "123";
+            infoText.floor += data.floor;
             infoArr.push(infoText.floor);
+            infoText.height += data.height;
+            infoArr.push(infoText.height);
 
             if (document.querySelector(".tarInfo")) 
             document.querySelector(".tarInfo").remove();
@@ -79,6 +81,7 @@
 		});
 		</script>
 
+    <!-- 建立板子 並轉向 -->
     <script>
       function createInfoBoard(itemPos, textArr) {
         let userRot = getCamRot();
@@ -96,8 +99,8 @@
         let box = document.createElement("a-box");
         document.querySelector(".tarInfo").appendChild(box);
         box.setAttribute("color", "black");
-        box.setAttribute("height", 2);
-        box.setAttribute("width", 3);
+        box.setAttribute("height", 20);
+        box.setAttribute("width", 30);
         box.setAttribute("depth", "0.025");
 
         let textPrefix = "anchor: center; width: 2; color: white; value: ";
@@ -326,7 +329,7 @@
       
       <a-entity 
         id="Geo"
-        info="name:Department of Geomatics; floor:5; Height:12.15"
+        info="name:Department of Geomatics; floor:5; height:12.15"
         geometry="primitive: sphere" 
         radius="0.1"
         gps-entity-place="longitude: 120.21793515707928; latitude:23.008439768589962;"
@@ -344,7 +347,7 @@
 
       <a-entity 
         id="Math"
-        info="name:Department of MATH; floor:6; Height:11.5"
+        info="name:Department of MATH; floor:6; height:11.5"
         geometry="primitive: sphere" 
         radius="0.1"
         gps-entity-place="longitude: 120.21793515707928; latitude:23.008439768589962;"
@@ -362,7 +365,7 @@
 
       <a-entity 
         id="Chemistry"
-        info="name:Department of MATH; floor:2; Height:10.95"
+        info="name:Department of MATH; floor:2; height:10.95"
         geometry="primitive: sphere" 
         radius="0.1"
         gps-entity-place="longitude: 120.21793515707928; latitude:23.008439768589962;"
@@ -380,11 +383,11 @@
 
         <a-entity 
           id="Home"
-          info="name:My home; floor:3; Height:9"
+          info="name:My home; floor:3; height:9"
           geometry="primitive: box" 
           gps-entity-place="longitude: 120.217901; latitude: 23.008287;"
           position="0 5 0"
-          scale="10 10 10"
+          scale="3 3 3"
           material="color: green">
         </a-entity>
         
