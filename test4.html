@@ -27,12 +27,6 @@
 </head>
 
 <body style='margin: 0; overflow: hidden;'>
-  
-  <!--畫面中間的小圓點  -->
-  <a-camera id="camera"><a-cursor></a-cursor></a-camera>
-
-
-  
   <div id="apidata"
     onmouseover="over(this);"
 		onmouseout="out(this);"
@@ -240,7 +234,7 @@
 
         <a-sphere 
           gps-entity-place="longitude: 120.217975; latitude: 23.008345;"
-			    radius="3" 
+			    radius="0.3" 
 			    color="#EF2D5E">
 		    </a-sphere>
 
@@ -260,7 +254,7 @@
 
         <a-sphere 
           gps-entity-place="longitude: 120.21999459727598; latitude: 22.998706010448853;"
-			    radius="3" 
+			    radius="0.3" 
 			    color="#EF2D5E">
 		    </a-sphere>
 
@@ -294,7 +288,8 @@
           gps-entity-place="longitude: 120.220013; latitude: 22.998374;">
         </a-entity>
 
-        <a-camera gps-camera rotation-reader></a-camera>
+        <a-camera id="camera" gps-camera rotation-reader><a-cursor></a-cursor></a-camera>
+        <!--畫面中間的小圓點  -->
 	</a-scene>
 
   <script>
