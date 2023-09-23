@@ -17,6 +17,47 @@
 	  <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/css/main.css">
 	  <script src="https://js.arcgis.com/4.13/"></script>
 
+    <!-- 加入屬性和... -->
+    <script>
+			AFRAME.registerComponent('blood', {
+			schema: {
+				blood_type: {type: "string", default: "O-type"}, 
+				oxygen_level: {type: "string", default: "normal"}
+			},
+			init: function () {
+				//列出這個data屬性
+				console.log(this.data);
+				//列出這個element資料
+				console.log(this.el);
+				let Chang = document.querySelector('#Tank');			
+				console.log(Chang);
+
+				let data = this.data;
+				
+				//加入event listener
+				this.el.addEventListener('click', function(obj){
+					//列出data屬性
+					console.log(data);
+					//列出element背後的資料
+					console.log(obj);
+					let oldPosition = obj.srcElement.getAttribute('position');
+					console.log(oldPosition);
+
+					//改變element的位置
+					let newPositionY = oldPosition.y + 0.2;
+					obj.srcElement.setAttribute('position', oldPosition.x + " " + newPositionY + " " + oldPosition.z );
+
+				});
+
+			},
+			update: function () {},
+			tick: function () {},
+			remove: function () {},
+			pause: function () {},
+			play: function () {}
+		});
+		</script>
+
     <style>
 		html, body {
 				height: 100%;
@@ -206,11 +247,6 @@
 		    </a-plane> -->
 
         <!--家前-->
-        <a-entity 
-          gltf-model="#nav" 
-          scale="1 1 1"
-          gps-entity-place="longitude: 120.217959; latitude: 23.008352;"></a-entity>
-        </a-entity>
 
         <a-entity 
           gltf-model="#nav" 
@@ -224,6 +260,23 @@
         color="#0000AA;">
       </a-entity>
 
+      <a-entity 
+        id="Judy"
+        blood="blood_type:AB-type; oxygen_level: low"
+        text="value: Hello World;"
+        gps-entity-place="longitude: 120.21793515707928; latitude:23.008439768589962;"
+        color="#0000AA;">
+      </a-entity>
+
+      <a-entity 
+        id="Tank"
+        blood="blood_type:A-type; oxygen_level: heigh"
+        geometry="primitive: sphere" 
+        material="color: red"
+        gps-entity-place="longitude: 120.217975; latitude: 23.008345;"
+			  radius="0.3" >
+      </a-entity>
+
         <!--position="-14.5 15 0"-->
         <!--不能以中文字-->
         <a-text 
@@ -231,12 +284,6 @@
           side="double;"
           gps-entity-place="longitude: 120.217975; latitude: 23.008345;">
         </a-text>
-
-        <a-sphere 
-          gps-entity-place="longitude: 120.217975; latitude: 23.008345;"
-			    radius="0.3" 
-			    color="#EF2D5E">
-		    </a-sphere>
 
         <a-text 
           value="Kaiyuan Elementary School" 
