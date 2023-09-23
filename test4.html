@@ -17,6 +17,9 @@
 	  <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/css/main.css">
 	  <script src="https://js.arcgis.com/4.13/"></script>
 
+    <!-- 測試 -->
+    <div id="try"><p>資料</p></div>
+
     <!-- 加入屬性和... -->
     <script>
 			AFRAME.registerComponent('blood', {
@@ -48,7 +51,7 @@
 					obj.srcElement.setAttribute('position', oldPosition.x + " " + newPositionY + " " + oldPosition.z );
 
           //改變"資料""
-          document.getElementById("apidata").innerHTML = greeting + "Now is " + hour + " o'clock.";
+          document.getElementById("try").innerHTML = "success!";
 				});
 
 			},
@@ -263,7 +266,7 @@
         blood="blood_type:AB-type; oxygen_level: low"
         text="value: Hello World;"
         gps-entity-place="longitude: 120.21793515707928; latitude:23.008439768589962;"
-        position="0 20 0"
+        position="0 5 0"
         color="#0000AA;">
       </a-entity>
 
@@ -273,7 +276,7 @@
         geometry="primitive: sphere" 
         material="color: red"
         gps-entity-place="longitude: 120.217975; latitude: 23.008345;" 
-        position="0 30 0"
+        position="0 0 0"
 			  radius="0.3" >
       </a-entity>
 
