@@ -126,9 +126,9 @@
 }
 
 
-#viewDiv {
+#try {
   position:absolute;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 30%;
   font-size: 4em;
 }
