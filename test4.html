@@ -18,7 +18,7 @@
 	  <script src="https://js.arcgis.com/4.13/"></script>
 
     <!-- 測試 -->
-    <div id="try"><p>資料123</p></div>
+    <div id="try"><p>資料3</p></div>
 
     <!-- 加入屬性和... -->
     <script>
@@ -90,9 +90,9 @@
         enti.setAttribute("class", "tarInfo");
         enti.setAttribute("color", "white");
         enti.setAttribute("position", {
-          x: itemPos["x"] -2*Math.cos(Math.PI*userRot[1]/180),
-          y: itemPos["y"] + 2,
-          z: itemPos["z"] +2*Math.sin(Math.PI*userRot[1]/180),
+          x: itemPos["x"] -10*Math.cos(Math.PI*userRot[1]/180),
+          y: itemPos["y"] + 10,
+          z: itemPos["z"] +10*Math.sin(Math.PI*userRot[1]/180),
         });
         
         enti.setAttribute("rotation", { x: 0, y: userRot[1], z: 0 });
