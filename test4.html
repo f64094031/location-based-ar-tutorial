@@ -254,13 +254,28 @@
           gps-entity-place="longitude: 120.219635; latitude: 22.998484;"></a-entity>
       </a-entity>
 
+      <a-entity 
+			id="Tank"
+			blood="blood_type:A-type; oxygen_level: heigh"
+			geometry="primitive: sphere" 
+			material="color: red"
+      gps-entity-place="longitude: 120.21798595771396; latitude: 23.008400636772265;" 
+			radius="1.25">
+		</a-entity>
+
+		<a-entity 
+			id="Judy"
+			blood="blood_type:AB-type; oxygen_level: low"
+			geometry="primitive: box" 
+			material="color: blue"
+			position="0 0 0" >
+		</a-entity>
       <!-- a-frame "position" parameter to assign a y-value to change the height of the content. -->
       <!-- This value should be entered as meters above or below (if negative) the current camera height. -->
+      
       <a-entity 
         id="Geo"
-        name="Department of Geomatics"
-        floor="5"
-        Height="12.15"
+        info="name:Department of Geomatics; floor:5; Height:12.15"
         geometry="primitive: sphere" 
         radius="0.1"
         gps-entity-place="longitude: 120.21793515707928; latitude:23.008439768589962;"
@@ -278,9 +293,7 @@
 
       <a-entity 
         id="Math"
-        name="Department of MATH"
-        Height="11.5"
-        floor="6"
+        info="name:Department of MATH; floor:6; Height:11.5"
         geometry="primitive: sphere" 
         radius="0.1"
         gps-entity-place="longitude: 120.21793515707928; latitude:23.008439768589962;"
@@ -291,16 +304,14 @@
       <a-text 
         value="Department of MATH" 
         scale="5 5 5"
-        color="#FFFFF"
+        color="#FFFFFF"
         side="double"
         gps-entity-place="longitude: 120.21935984659088; latitude: 22.998651691398333;">
       </a-text>
 
       <a-entity 
         id="Chemistry"
-        name="Department of MATH"
-        Height="10.95"
-        floor="6"
+        info="name:Department of MATH; floor:2; Height:10.95"
         geometry="primitive: sphere" 
         radius="0.1"
         gps-entity-place="longitude: 120.21793515707928; latitude:23.008439768589962;"
@@ -311,13 +322,13 @@
       <a-text 
         value="Department of Chemistry" 
         scale="5 5 5"
-        color="#FFFFF"
+        color="#FFFFFF"
         side="double"
         gps-entity-place="longitude: 120.21970910424058; latitude: 22.99816028155562;">
       </a-text>
 
-        <!--position="-14.5 15 0"-->
-        <!--不能以中文字-->
+        不能以中文字
+
         <a-entity 
           id="Home"
           name="My home"
@@ -341,7 +352,7 @@
           value="Kaiyuan Elementary School" 
           side="double"
           gps-entity-place="longitude: 120.217901; latitude: 23.008287;">
-        </a-text>
+        </a-text> 
          
         
 
