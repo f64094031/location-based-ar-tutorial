@@ -90,9 +90,9 @@
         enti.setAttribute("class", "tarInfo");
         enti.setAttribute("color", "white");
         enti.setAttribute("position", {
-          x: itemPos["x"] -10*Math.cos(Math.PI*userRot[1]/180),
+          x: itemPos["x"] - 10*Math.cos(Math.PI*userRot[1]/180),
           y: itemPos["y"] + 10,
-          z: itemPos["z"] +10*Math.sin(Math.PI*userRot[1]/180),
+          z: itemPos["z"] + 10*Math.sin(Math.PI*userRot[1]/180),
         });
         
         enti.setAttribute("rotation", { x: 0, y: userRot[1], z: 0 });
@@ -330,15 +330,14 @@
       <a-entity 
         id="Geo"
         info="name:Department of Geomatics; floor:5; height:12.15"
-        geometry="primitive: sphere" 
-        radius="10"
+        geometry="primitive: sphere; radius=0.25"
         gps-entity-place="longitude: 120.21998887048584; latitude:22.998674899346902;"
         position="0 0 0"
         material="color: green">
       </a-entity>
 
       <a-text 
-          value="Department of Geomatics" 
+          value="Department of Geomatics"
           color="#0000AA"
           scale="15 15 15"
           side="double"
@@ -348,8 +347,7 @@
       <a-entity 
         id="Math"
         info="name:Department of MATH; floor:6; height:11.5"
-        geometry="primitive: sphere" 
-        radius="10"
+        geometry="primitive: sphere; radius=1" 
         gps-entity-place="longitude: 120.21930761869406; latitude:22.99866749165956;"
         position="0 0.1 0"
         material="color: blue">
@@ -366,11 +364,10 @@
       <a-entity 
         id="Chemistry"
         info="name:Department of Chemistry; floor:2; height:10.95"
-        geometry="primitive: sphere" 
-        radius="10"
+        geometry="primitive: sphere; radius=0.5"
         gps-entity-place="longitude: 120.21970456668286; latitude:22.9981588815228;"
         position="0 0 0"
-        material="color: #ffd700">
+        material="color: yellow">
       </a-entity>
 
       <a-text 
