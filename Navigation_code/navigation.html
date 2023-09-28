@@ -61,7 +61,7 @@
 
 		<a-camera rotation-reader></a-camera>
 	</a-scene>
-	
+	<!-- 建立下拉式選單 -->
 	<select id="list" style="position: absolute; top: 0px; left: 0px; z-index: 10;">
 		<option class="drop-down">--Please select--</option>
 		<option class="drop-down">(1F)Gate</option>
@@ -92,6 +92,7 @@
 		//AR內容位置
 		let targetEntrance = ''; //記錄導引目標空間入口座標(導引箭號用)
 		let targetEntranceID = ''; //記錄導引目標空間入口節點ID(路線計算用)
+		
 		let startNodeID = ''; //距離目前位置最近的節點(當作路線起點)
 		let routePath; //儲存後端計算好的路線節點
 		let entrancePosition = [{"x":120.2199345,"y":22.9986416,"z":26.728},{"x":120.2200520,"y":22.9987154,"z":27.033},
@@ -114,10 +115,12 @@
 			//開始監聽下拉式選單選中之導引目標空間入口，一旦選單改變事件發生，觸發設定targetEntranceID、呼叫後端算路線API及執行SetPath()
 			let elem = document.querySelector("#list").addEventListener("change", function () {
 				console.log(this.options[this.selectedIndex].text);
+				//ResetColor('樓層', '顯示顏色');	SetColor(選擇的地點);
 				ResetColor('1', 'white'); ResetColor('2', 'yellow'); ResetColor('3', 'red');
 				SetColor(this.selectedIndex);
 				console.log('targetEntranceID:'+targetEntranceID);
 		//SetPath('02', '12', testpath);
+		//"$"為jQuery專用的selector
 				$.ajax({
 					type: 'POST',
 					async: false,
@@ -165,6 +168,7 @@
 					let userHeight = data.z + 26.728;
 					let point = {x: data.x, y: data.y}; //用戶即時平面位置座標(判斷within使用)
 					let position = {coords:{longitude: data.x, latitude: data.y, altitude: userHeight}}; //用戶即時位置座標
+					console.log(position + "test");
 					GetNearNode(position); //更新位置時同時計算最近節點，並存至startNodeID
 					SetLocation("text", theta_rad, position, entrancePosition, "entrance");
 					SetLocation("entity", theta_rad, position, entrancePosition, "entrance");
@@ -235,6 +239,7 @@
 			target_nF.forEach(function(x){
 				x.setAttribute('material', 'color: '+color); //先重置該樓entity顏色
 				x.setAttribute('material', 'opacity: 0.3; transparent: true;'); //先重置透明度
+				//console.log(x);
 			});
 		};
 		function SetColor(index){
@@ -272,7 +277,8 @@
 				let arrowz = 1.5*Math.cos((rotation-270)*Math.PI /180);
 				let arrowx = 1.5*Math.sin((rotation-270)*Math.PI /180); //沿目標方向向前1.5公尺
 				
-				arrowEntity.setAttribute('gltf-model','../assets/arrow/scene.gltf');
+				//arrowEntity.setAttribute('gltf-model','../assets/arrow/scene.gltf');
+				arrowEntity.setAttribute('scale','./pic/arrow.png');
 				arrowEntity.setAttribute('scale','1 1 1');
 				arrowEntity.setAttribute('rotation','90 '+rotation+' 0');
 				let target_att = document.createAttribute('position');
