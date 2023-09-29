@@ -71,10 +71,15 @@
 		<option class="drop-down">(2F)55209-Reading Room</option>
 		<option class="drop-down">(2F)55210-Laboratory</option>
 	</select>
-	
-	alpha:<span id="alpha"></span><br/>
-	beta:<span id="beta"></span><br/>
-	gamma:<span id="gamma"></span><br/>
+	<style>
+		.abg{
+			color: aqua;
+			font-size: 5em;
+		}
+	</style>
+	alpha:<span class="abg" id="alpha"></span><br/>
+	beta:<span class="abg" id="beta"></span><br/>
+	gamma:<span class="abg" id="gamma"></span><br/>
 
 	<script type="module">
 		import LatLon from 'https://cdn.jsdelivr.net/npm/geodesy@2.3.0/latlon-ellipsoidal-vincenty.js'; //匯入橢球距離的計算工具程式
