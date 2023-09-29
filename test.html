@@ -29,6 +29,7 @@
 		<div class="try123"><p>123</p></div>
 		<div class="try123"><p>123</p></div>
 		<div class="try123"><p>123</p></div>
+		<p id="p1" class="pClass">00000</p>
 		
 		<script>
 			AFRAME.registerComponent('blood', {
@@ -59,19 +60,49 @@
 					let newPositionY = oldPosition.y + 0.2;
 					obj.srcElement.setAttribute('position', oldPosition.x + " " + newPositionY + " " + oldPosition.z );
 
-					//改變"資料"(使用jQuery寫法)
+					//改變"資料"(使用jQuery寫法) ready表示資料準備好了後才執行
 					$(document).ready(function() {
 
 						$("#try")[0].innerHTML = "成功"; 
 						$(".try123").html("456"); 
 
+						//印出try的type
+						console.log(typeof $("#try"));
+						//跳出警示框
+						var try1 = $("#try").html();
+						var try2 = $("#try").html("789");
+						alert(try1 + try2 + "789");
 					});
 					/*或是這樣寫
 					$(function(){
 						$("#try")[0].innerHTML = "成功"; 
 						$(".try123").html("456"); 
 					})*/
-					
+
+						//split
+						const st = 'The moring is upon us.';
+						const arr0 = st.split();
+						const arr1 = st.split(" ");
+						const arr2 = st.split("");
+						const arr3 = st.split("o");
+						const arr4 = st.split("o", 2);
+						const arr5 = st.split("o", 0);
+						console.log(arr0 + arr1 + arr2, arr3, arr4, arr5);
+
+						//createAttribute
+						const att = document.createAttribute("class");
+						att.value = "red";
+						console.log(att);
+						//getAttributeNode
+						var className = p1.getAttributeNode("class").nodeValue;      //'pClass'
+						var title = p1.getAttributeNode("title");                    // null
+						var type = p1.getAttributeNode("class").nodeType;            // 2
+						console.log(className + title + type);
+						//setAttributeNode()
+						var attr = document.createAttribute("myAttr");
+						attr.nodeValue = 'wang';
+						p1.setAttributeNode(attr);	//p1會加上一個“myAttr”的自定義特性
+						console.log(p1);
 
 				});
 
@@ -172,10 +203,6 @@
 			material="color: blue"
 			position="0 0 0" >
 		</a-entity>
-		
-		<a-entity 
-			id="mario">
-		</a-entity>
 
 		<script>
 			function createInfoBoard(itemPos, textArr) {
@@ -211,10 +238,31 @@
 		}
 		</script>
 		
-
-	
-
     <a-box position="-1 1.6 -5" animation="property: position; to: 1 8 -10; dur: 2000; easing: linear; loop: true" color="tomato"></a-box>
+
+		<!-- querySelector -->
+		<header class="header">
+			<h1 id="h1">2022鐵人賽</h1>
+		</header>
+		<main>
+			<div class="parent">
+				這是父母層
+				<p class="brother child">這是沒有輸的大哥</p>
+				<p class="you child">這是你</p>
+				<p class="shark child">這是鯊魚</p>
+				<p class="shark dad">這是鯊魚爸</p>
+				<p class="shark mom">這是鯊魚媽</p>
+				<a href="#" class="link child">這是連結</a>
+			</div>
+		</main>
+		<script>
+			document.querySelector("h1#h1")
+			//<h1 id="h1">2022鐵人賽</h1>
+			document.querySelector(".parent .brother.child")
+			//<p class="brother child">這是沒有輸的大哥</p>
+			let shark = document.querySelectorAll(".shark")		//選擇class中有shark的
+			console.log(shark);
+		</script>
 
 
     </a-scene>
