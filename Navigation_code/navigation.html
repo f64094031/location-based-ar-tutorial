@@ -177,16 +177,23 @@
 					routeAll[i].setAttribute('rotation','0 '+head+' 0'); //確定路線模型旋轉角
 				};
 
-				var a = document.getElementById('alpha'),
-						b = document.getElementById('beta'),
-						g = document.getElementById('gamma'),
-        alpha = event.alpha,
-        beta = event.beta,
-        gamma = event.gamma;
+				if(window.DeviceOrientationEvent) {
+					window.addEventListener('deviceorientation', function(event) {
+						var a = document.getElementById('alpha'),
+									b = document.getElementById('beta'),
+									g = document.getElementById('gamma'),
+									alpha = event.alpha,
+									beta = event.beta,
+									gamma = event.gamma;
 
-				a.innerHTML = Math.round(alpha);
-				b.innerHTML = Math.round(beta);
-				g.innerHTML = Math.round(gamma);
+						a.innerHTML = Math.round(alpha);
+						b.innerHTML = Math.round(beta);
+						g.innerHTML = Math.round(gamma);
+
+							}, false);
+					}else{
+							document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
+				}
 				
 				//處理位置之計算
 				//let height = 31.634; //假設固定於2樓移動
