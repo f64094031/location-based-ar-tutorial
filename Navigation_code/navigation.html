@@ -73,7 +73,7 @@
 	</select>
 	<style>
 		.abg1{
-			color:rgb(15, 202, 47);
+			color:rgb(169, 235, 17);
 			font-size: 5em;
 			z-index: 9;
 			position: absolute;
@@ -194,8 +194,7 @@
 				};
 
 				//陀螺儀測試
-				if(window.DeviceOrientationEvent) {
-					window.addEventListener('deviceorientation', function(event) {
+				window.addEventListener('deviceorientation', function(event) {
 						var a = document.getElementById('alpha'),
 									b = document.getElementById('beta'),
 									g = document.getElementById('gamma'),
@@ -206,11 +205,13 @@
 						a.innerHTML = Math.round(alpha);
 						b.innerHTML = Math.round(beta);
 						g.innerHTML = Math.round(gamma);
-
-							}, false);
-					}else{
-							document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
-				}
+				});
+				// if(window.DeviceOrientationEvent) {
+					
+				// 			}, false);
+				// 	}else{
+				// 			document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
+				// }
 				
 				//處理位置之計算
 				//let height = 31.634; //假設固定於2樓移動
