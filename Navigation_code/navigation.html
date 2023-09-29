@@ -72,15 +72,34 @@
 		<option class="drop-down">(2F)55210-Laboratory</option>
 	</select>
 	<style>
-		.abg{
+		.abg1{
 			color:rgb(15, 202, 47);
 			font-size: 5em;
 			z-index: 9;
+			position: absolute;
+			top: 49%;
+			left: 50%;
+		}
+		.abg2{
+			color:rgb(15, 202, 47);
+			font-size: 5em;
+			z-index: 9;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+		}
+		.abg3{
+			color:rgb(15, 202, 47);
+			font-size: 5em;
+			z-index: 9;
+			position: absolute;
+			top: 51%;
+			left: 50%;
 		}
 	</style>
-	alpha:<span class="abg" id="alpha"></span><br/>
-	beta:<span class="abg" id="beta"></span><br/>
-	gamma:<span class="abg" id="gamma"></span><br/>
+	alpha:<span class="abg1" id="alpha"></span><br/>
+	beta:<span class="abg2" id="beta"></span><br/>
+	gamma:<span class="abg3" id="gamma"></span><br/>
 
 	<script type="module">
 		import LatLon from 'https://cdn.jsdelivr.net/npm/geodesy@2.3.0/latlon-ellipsoidal-vincenty.js'; //匯入橢球距離的計算工具程式
@@ -174,6 +193,7 @@
 					routeAll[i].setAttribute('rotation','0 '+head+' 0'); //確定路線模型旋轉角
 				};
 
+				//陀螺儀測試
 				if(window.DeviceOrientationEvent) {
 					window.addEventListener('deviceorientation', function(event) {
 						var a = document.getElementById('alpha'),
