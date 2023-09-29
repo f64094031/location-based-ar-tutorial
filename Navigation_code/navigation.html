@@ -77,7 +77,7 @@
 			font-size: 5em;
 			z-index: 9;
 			position: absolute;
-			top: 430%;
+			top: 30%;
 			left: 50%;
 		}
 		.abg2{
@@ -147,6 +147,7 @@
 				//ResetColor('樓層', '顯示顏色');	SetColor(選擇的地點);
 				ResetColor('1', 'white'); ResetColor('2', 'yellow'); ResetColor('3', 'red');
 				SetColor(this.selectedIndex);
+				//console.log(this.selectedIndex);
 				console.log('targetEntranceID:'+targetEntranceID);
 		//SetPath('02', '12', testpath);
 		//"$"為jQuery專用的selector $()=jQuery() 表示一個function
@@ -221,6 +222,8 @@
 					let point = {x: data.x, y: data.y}; //用戶即時平面位置座標(判斷within使用)
 					let position = {coords:{longitude: data.x, latitude: data.y, altitude: userHeight}}; //用戶即時位置座標
 					console.log(position + "test");
+					//console.log("x: " + position.coords.longitude);
+					//console.log("y: " + position.coords.latitude);
 					GetNearNode(position); //更新位置時同時計算最近節點，並存至startNodeID
 					SetLocation("text", theta_rad, position, entrancePosition, "entrance");
 					SetLocation("entity", theta_rad, position, entrancePosition, "entrance");
@@ -294,13 +297,13 @@
 				//console.log(x);
 			});
 		};
-		function SetColor(index){
+		function SetColor(index){		//index表示下拉選單選擇第幾個選項，0表示沒有選
 			let target = document.querySelectorAll('a-entity.entrance');
 			let ID = ['14', '03', '09', '12', '11', '13'];
 			if (index > 0){ //有選擇空間的時候
 				target[index-1].setAttribute('material', 'color: blue; opacity: 1; transparent: true;');
 				targetEntrance = entrancePosition[index-1];
-				targetEntranceID = ID[index-1];
+				targetEntranceID = ID[index-1];	
 			}else{ //未選擇空間，重置所有entity透明度
 				target.forEach(function(x){
 					x.setAttribute('material', 'opacity: 1; transparent: true;'); 
@@ -329,8 +332,8 @@
 				let arrowz = 1.5*Math.cos((rotation-270)*Math.PI /180);
 				let arrowx = 1.5*Math.sin((rotation-270)*Math.PI /180); //沿目標方向向前1.5公尺
 				
-				//arrowEntity.setAttribute('gltf-model','../assets/arrow/scene.gltf');
-				arrowEntity.setAttribute('scale','./pic/arrow.png');
+				//arrowEntity.setAttribute('scale','./pic/arrow.png');
+				arrowEntity.setAttribute('gltf-model','../assets/arrow/scene.gltf');
 				arrowEntity.setAttribute('scale','1 1 1');
 				arrowEntity.setAttribute('rotation','90 '+rotation+' 0');
 				let target_att = document.createAttribute('position');
@@ -353,7 +356,7 @@
 				let horizontalD = new LatLon(NodePosition[j].y, NodePosition[j].x).distanceTo(user);
 				let verticalD = NodePosition[j].z - position.coords.altitude;
 				let D = Math.sqrt(Math.pow(horizontalD, 2) + Math.pow(verticalD, 2));
-				if(D < minD){
+				if(D < minD){		//如果使用者與節點距離<minD
 					minD = D; //更新最小距離
 					let n = j+1;
 					if (n<10){
@@ -361,6 +364,8 @@
 					}else{
 						startNodeID = n.toString();
 					}
+				}else{		//如果使用者與節點距離>minD
+					startNodeID = '01';
 				}
 			};
 			console.log('startNodeID:'+startNodeID);
@@ -371,8 +376,10 @@
 			//console.log("path: " + path);
 			let pathAll = document.querySelectorAll(".route");	//一個可以跨類別查找的神奇工具(選擇所有class中含有route的資料)
 			//querySelector可以跟CSS的使用一樣，可以逐層進入你要的位子，所以他的關鍵字的用法就跟CSS的一樣，id前面要加"#"、classname前面要加"."等
-			console.log(pathAll);
+			//console.log(pathAll);
 			let nodeNow = start;
+			console.log("nodeNow: " + nodeNow);
+
 			for(let j=0; j<pathAll.length; j++){
 				let attclear = document.createAttribute('gltf-model');	//attclear: gltf-model = ../assets/transparent.gltf
 				attclear.value = "../assets/transparent.gltf";
@@ -388,7 +395,7 @@
 				let pathNow = document.querySelector(".route.n"+nodeNow+".n"+path[j]);	//選擇class中含有"route" "n"+nodeNow "n"+path[j]"的資料
 				let att = document.createAttribute('gltf-model');
 				att.value = "../assets/path/" + nodeNow + path[j] + ".gltf";
-				console.log(pathNow);		//null不能執行(沒有nodeNow找不到資料)
+				console.log(pathNow);		//null不能執行(沒有nodeNow querySelector找不到資料)
 				pathNow.setAttributeNode(att);
 				nodeNow = path[j];
 			};
