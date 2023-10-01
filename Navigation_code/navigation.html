@@ -332,7 +332,7 @@
 				let arrowz = 1.5*Math.cos((rotation-270)*Math.PI /180);
 				let arrowx = 1.5*Math.sin((rotation-270)*Math.PI /180); //沿目標方向向前1.5公尺
 				
-				//arrowEntity.setAttribute('scale','./pic/arrow.png');
+				//arrowEntity.setAttribute('gltf-model','../assets/path/arrow.png');
 				arrowEntity.setAttribute('gltf-model','../assets/arrow/scene.gltf');
 				arrowEntity.setAttribute('scale','1 1 1');
 				arrowEntity.setAttribute('rotation','90 '+rotation+' 0');
@@ -396,6 +396,7 @@
 				let att = document.createAttribute('gltf-model');
 				att.value = "../assets/path/" + nodeNow + path[j] + ".gltf";
 				console.log(pathNow);		//null不能執行(沒有nodeNow querySelector找不到資料)
+				console.log(att);
 				pathNow.setAttributeNode(att);
 				nodeNow = path[j];
 			};

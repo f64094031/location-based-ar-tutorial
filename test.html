@@ -30,6 +30,10 @@
 		<div class="try123"><p>123</p></div>
 		<div class="try123"><p>123</p></div>
 		<p id="p1" class="pClass">00000</p>
+		<a-assets-item class="path" id="path0102" src="./Navigation_code/assets/path/0102.gltf"></a-assets-item>
+		<a-assets-item class="path" id="path0104" src="./Navigation_code/assets/path/0104.gltf"></a-assets-item>
+		<a-assets-item class="path" id="path0201" src="./Navigation_code/assets/path/0201.gltf"></a-assets-item>
+		<img id="sky" src="./pic/146553719.jpg">
 		
 		<script>
 			AFRAME.registerComponent('blood', {
@@ -160,6 +164,31 @@
 		</script>
 
     <a-scene>
+
+		<!-- 測試 -->
+		<a-sky 
+			src="#sky"
+			radius="20"
+			side="double">
+		</a-sky>
+
+		<a-entity 							
+			gltf-model="#path0102" 
+			scale="1 1 1"
+			position="5 5 5">
+		</a-entity>
+
+		<a-entity 							
+			gltf-model="#path0104" 
+			scale="1 1 1"
+			position="0 0 0">
+		</a-entity>
+
+		<a-entity 							
+			gltf-model="#path0201" 
+			scale="1 1 1"
+			position="10 10 10">
+		</a-entity>
 
 		
 		<!--畫面中間的小圓點  -->
