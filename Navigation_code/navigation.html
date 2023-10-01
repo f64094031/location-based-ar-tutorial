@@ -89,17 +89,26 @@
 			left: 50%;
 		}
 		.abg3{
-			color:rgb(15, 202, 47);
+			color:rgb(11, 175, 38);
 			font-size: 5em;
 			z-index: 9;
 			position: absolute;
 			top: 70%;
 			left: 50%;
 		}
+		#north {
+			color:rgb(3, 83, 16);
+			font-size: 5em;
+			z-index: 9;
+			position: absolute;
+			top: 90%;
+			left: 50%;
+		}
 	</style>
 	alpha:<span class="abg1" id="alpha"></span><br/>
 	beta:<span class="abg2" id="beta"></span><br/>
 	gamma:<span class="abg3" id="gamma"></span><br/>
+	north:<span class="north" id="north"></span><br/>
 
 	<script type="module">
 		import LatLon from 'https://cdn.jsdelivr.net/npm/geodesy@2.3.0/latlon-ellipsoidal-vincenty.js'; //匯入橢球距離的計算工具程式
@@ -197,15 +206,19 @@
 				//陀螺儀測試
 				window.addEventListener('deviceorientation', function(event) {
 						var a = document.getElementById('alpha'),
-									b = document.getElementById('beta'),
-									g = document.getElementById('gamma'),
-									alpha = event.alpha,
-									beta = event.beta,
-									gamma = event.gamma;
+								b = document.getElementById('beta'),
+								g = document.getElementById('gamma'),
+								n = document.getElementById('north'),
+								alpha = event.alpha,
+								beta = event.beta,
+								gamma = event.gamma,
+								head = event.webkitCompassHeading; //獲取羅盤資料(iOS限定) //手機-z軸向(朝前)相對於N軸向之順時針角度
 
 						a.innerHTML = Math.round(alpha);
 						b.innerHTML = Math.round(beta);
 						g.innerHTML = Math.round(gamma);
+						n.innerHTML = Math.round(head);
+
 				});
 				// if(window.DeviceOrientationEvent) {
 					
