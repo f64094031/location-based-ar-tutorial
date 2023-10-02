@@ -209,9 +209,7 @@
 				for (let i=0; i<routeAll.length; i++){
 					routeAll[i].setAttribute('rotation','0 '+head+' 0'); //確定路線模型旋轉角
 				};
-
-				//陀螺儀測試
-				window.addEventListener('deviceorientation', function(event) {
+				
 						var a = document.getElementById('alpha'),
 								b = document.getElementById('beta'),
 								g = document.getElementById('gamma'),
@@ -224,8 +222,6 @@
 						b.innerHTML = Math.round(beta);
 						g.innerHTML = Math.round(gamma);
 						n.innerHTML = Math.round(head);
-
-				});
 				// if(window.DeviceOrientationEvent) {
 					
 				// 			}, false);
