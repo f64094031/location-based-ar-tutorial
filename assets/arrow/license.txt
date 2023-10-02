@@ -1,11 +1,11 @@
 Model Information:
-* title:	3D Cursor
-* source:	https://sketchfab.com/3d-models/3d-cursor-f230bf06204747a092fd432fb1b758a8
-* author:	b92277098 (https://sketchfab.com/b92277098)
+* title:	Jump/Boost Arrow
+* source:	https://sketchfab.com/3d-models/jumpboost-arrow-fad95c37aaa240e49377edcfe2552ee7
+* author:	aidanp (https://sketchfab.com/bionic_leaf)
 
 Model License:
 * license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 * requirements:	Author must be credited. Commercial use is allowed.
 
 If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
-This work is based on "3D Cursor" (https://sketchfab.com/3d-models/3d-cursor-f230bf06204747a092fd432fb1b758a8) by b92277098 (https://sketchfab.com/b92277098) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+This work is based on "Jump/Boost Arrow" (https://sketchfab.com/3d-models/jumpboost-arrow-fad95c37aaa240e49377edcfe2552ee7) by aidanp (https://sketchfab.com/bionic_leaf) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
