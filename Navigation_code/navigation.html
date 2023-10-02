@@ -193,8 +193,15 @@
 				}, 500);*/
 			});
 			window.addEventListener('deviceorientation', function(event) { //get azimuth 處理方位角
-				//陀螺儀監聽
-				let head = event.webkitCompassHeading; //獲取羅盤資料(iOS限定) //手機-z軸向(朝前)相對於N軸向之順時針角度
+				//陀螺儀監聽	//獲取羅盤資料z//手機-z軸向(朝前)相對於N軸向之順時針角度
+				let head; 
+				//     判斷是否為 iOS 裝置
+				if(event.webkitCompassHeading) {
+          head = event.webkitCompassHeading; // iOS 裝置必須使用 event.webkitCompassHeading
+        }
+        else {
+          head = event.alpha;
+        }
 				if (head == undefined){ head = 0; } //無羅盤資料則預設朝向正北
 				let theta = -(head-180-90); //N軸轉向手機x軸向(朝右)的逆時針角度
 				let theta_rad = theta * Math.PI /180; //換成弧度
@@ -211,8 +218,7 @@
 								n = document.getElementById('north'),
 								alpha = event.alpha,
 								beta = event.beta,
-								gamma = event.gamma,
-								head = event.webkitCompassHeading; //獲取羅盤資料(iOS限定) //手機-z軸向(朝前)相對於N軸向之順時針角度
+								gamma = event.gamma;
 
 						a.innerHTML = Math.round(alpha);
 						b.innerHTML = Math.round(beta);
