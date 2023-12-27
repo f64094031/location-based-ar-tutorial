@@ -116,7 +116,7 @@
 		
 	//---全域變數---
 		//API網址 (80 port: ngrok http 80)
-		const TrackAPI = "https://0bad-140-116-47-115.ngrok-free.app/TrackAPI2.php";
+		const TrackAPI = "https://d0e4-140-116-47-115.ngrok-free.app/TrackAPI2.php";
 		const FindPathAPI = "https://0bad-140-116-47-115.ngrok-free.app/FindPath.php";
 		const PathAPI = "https://0bad-140-116-47-115.ngrok-free.app/PathAPI.php";
 		/*$.post( FindPathAPI, { 'start': '11', 'end': '2' },function(data){ 
@@ -210,29 +210,6 @@
 					routeAll[i].setAttribute('rotation','0 '+head+' 0'); //確定路線模型旋轉角
 				};
 
-				//陀螺儀測試
-				// window.addEventListener('deviceorientation', function(event) {
-				// 		var a = document.getElementById('alpha'),
-				// 				b = document.getElementById('beta'),
-				// 				g = document.getElementById('gamma'),
-				// 				n = document.getElementById('north'),
-				// 				alpha = event.alpha,
-				// 				beta = event.beta,
-				// 				gamma = event.gamma;
-
-				// 		a.innerHTML = Math.round(alpha);
-				// 		b.innerHTML = Math.round(beta);
-				// 		g.innerHTML = Math.round(gamma);
-				// 		n.innerHTML = Math.round(head);
-
-				// });
-				// if(window.DeviceOrientationEvent) {
-					
-				// 			}, false);
-				// 	}else{
-				// 			document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
-				// }
-				
 				//處理位置之計算
 				//let height = 31.634; //假設固定於2樓移動
 				//let userHeight = height + 1.3;
@@ -285,11 +262,18 @@
 		function SetLocation(type, degree, position, ancpos, classtype){ //type: 實體類型, degree: 啟動時裝置方位角, position: 用戶位置座標, ancpos: AR內容座標
 			let target = document.querySelectorAll('a-'+type+'.'+classtype);
 			if (target.length!=0 && ancpos.length!=0){
-				for(let j=0; j<ancpos.length; j++){ 
+				for(let j=0; j<ancpos.length; j++){
 					let H = ancpos[j].z - position.coords.altitude;
 					let user = new LatLon(position.coords.latitude, position.coords.longitude);
-					let E = new LatLon(position.coords.latitude, ancpos[j].x).distanceTo(user);
+
+					//(AR內容緯度, 使用者經度)與(使用者緯度, 使用者經度)之距離N(m) 
+					//也就是說將AR內容平移置與使用者相同經度，計算兩者間之距離N
 					let N = new LatLon(ancpos[j].y, position.coords.longitude).distanceTo(user);
+
+					//(使用者緯度, AR內容經度)與(使用者緯度, 使用者經度)之距離E(m) 
+					//也就是說將AR內容平移置與使用者相同緯度，計算兩者間之距離E(假設兩點緯度差極小) 
+					let E = new LatLon(position.coords.latitude, ancpos[j].x).distanceTo(user);
+
 					if (ancpos[j].x-position.coords.longitude < 0){ E = -E;}
 					if (ancpos[j].y-position.coords.latitude < 0){ N = -N;}
 					if (type=="text"){
@@ -297,7 +281,7 @@
 						H = ancpos[j].z + 0.5 - position.coords.altitude;
 					}
 					let z = Math.cos(degree)*E + Math.sin(degree)*N;
-					let x = Math.cos(degree)*N - Math.sin(degree)*E; //換算至手機相機局部坐標系中(公尺)
+					let x	= Math.cos(degree)*N - Math.sin(degree)*E; //換算至手機相機局部坐標系中(公尺)
 
 					let target_att = document.createAttribute('position');
 					target_att.value = x+" "+H+" "+z;

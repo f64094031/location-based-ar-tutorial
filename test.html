@@ -6,6 +6,9 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="./test.css"/>
+
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- A-Frame API via CDN -->
@@ -33,7 +36,10 @@
 		<a-assets-item class="path" id="path0102" src="./Navigation_code/assets/path/0102.gltf"></a-assets-item>
 		<a-assets-item class="path" id="path0104" src="./Navigation_code/assets/path/0104.gltf"></a-assets-item>
 		<a-assets-item class="path" id="path0201" src="./Navigation_code/assets/path/0201.gltf"></a-assets-item>
-		<img id="sky" src="./pic/146553719.jpg">
+		
+
+		<button id="myBtn" class="button" >Try it!</button>
+		<p id="demo3"></p>
 		
 		<script>
 			AFRAME.registerComponent('blood', {
@@ -59,10 +65,14 @@
 					console.log(obj);
 					let oldPosition = obj.srcElement.getAttribute('position');
 					console.log(oldPosition);
+					let oldRotation = obj.srcElement.getAttribute('rotation');
+					console.log(oldRotation);
 
 					//改變element的位置
 					let newPositionY = oldPosition.y + 0.2;
 					obj.srcElement.setAttribute('position', oldPosition.x + " " + newPositionY + " " + oldPosition.z );
+					let newRotationZ = oldRotation.z + 80;
+					obj.srcElement.setAttribute('rotation', oldRotation.x + " " + oldRotation.y + " " + newRotationZ );
 
 					//改變"資料"(使用jQuery寫法) ready表示資料準備好了後才執行
 					$(document).ready(function() {
@@ -91,7 +101,7 @@
 						const arr3 = st.split("o");
 						const arr4 = st.split("o", 2);
 						const arr5 = st.split("o", 0);
-						console.log(arr0 + arr1 + arr2, arr3, arr4, arr5);
+						console.log( "0: " + arr0 +"1: " + arr1 +"2: " + arr2 +"3: "+ arr3 +"4: "+ arr4 +"5: "+ arr5);
 
 						//createAttribute
 						const att = document.createAttribute("class");
@@ -166,11 +176,11 @@
     <a-scene>
 
 		<!-- 測試 -->
-		<a-sky 
+		<!-- <a-sky 
 			src="#sky"
 			radius="20"
 			side="double">
-		</a-sky>
+		</a-sky> -->
 
 		<a-entity 							
 			gltf-model="#path0102" 
@@ -190,24 +200,55 @@
 			position="10 10 10">
 		</a-entity>
 
-		
-		<!--畫面中間的小圓點  -->
-		<a-camera id="camera"><a-cursor></a-cursor></a-camera>
-
 		<a-assets>
 			<img id = "mental-NRM" src="./pic/tex.jpg">
 			<img id="brick" src="./pic/tex.jpg">
 			<img id="sky" src="./pic/146553719.jpg">
 			<img id="arrow" src="./pic/arrow.png">
-    		<a-assets-item id="articuno" src="./assets/articuno/scene.gltf"></a-assets-item>
+    	<a-assets-item id="articuno" src="./assets/articuno/scene.gltf"></a-assets-item>
 			<a-assets-item id="nav" src="./assets/nav/nav4.gltf"></a-assets-item>
+			<a-assets-item id="arrowgltf" src="./assets/arrow/scene.gltf"></a-assets-item>
 		</a-assets>
 
-        
+		<!--畫面中間的小圓點  -->
+		<a-camera id="camera" position="0 5 5" ><a-cursor></a-cursor></a-camera>
+
+		<!-- 取得cameraXYZ -->
+		<script>
+			document.getElementById("myBtn").addEventListener("click", displayXYZ);
+
+			function displayXYZ() {
+				// `rotation` is a three.js Euler using radians. `quaternion` also available.
+			const rotation = document.querySelector("#camera").getAttribute("rotation");
+			document.getElementById("demo3").innerHTML = rotation;
+      console.log(rotation);
+			// `position` is a three.js Vector3.
+			const position = document.querySelector("#camera").getAttribute("position");
+			console.log(position);
+			}	
+		</script>
+
+		<a-image 
+			blood="blood_type:AB-type; oxygen_level: medium"
+			src="#arrow"
+			side="double"
+			scale="10 10 10"
+			position="0 0 -10"
+			rotation=" 90 45 0 ">
+		</a-image>
+
+
     <a-entity 							
 			gltf-model="#nav" 
 			scale="0.5 0.5 0.5"
 			position="3 5 50">
+		</a-entity>
+
+		<a-entity 							
+			gltf-model="#arrowgltf" 
+			scale="10 10 10"
+			position="0 0 -7"
+			rotation="-90 0 0">
 		</a-entity>
 
 		<!-- <a-sphere 
@@ -268,6 +309,8 @@
 		</script>
 		
     <a-box position="-1 1.6 -5" animation="property: position; to: 1 8 -10; dur: 2000; easing: linear; loop: true" color="tomato"></a-box>
+
+
 
 		<!-- querySelector -->
 		<header class="header">
