@@ -64,5 +64,9 @@ function SetLocation(position, degree){
 	let target_att = document.createAttribute('position');
 	target_att.value = x+" "+H+" "+z;
 	target.setAttributeNode(target_att);
+// 	The Difference Between setAttribute() and setAttributeNode()
+// 	The setAttribute() method replaces attribute values.
+// 	The setAttributeNode() method replaces Attribute objects.
+// 	You must create an Attr object and set the Attr value before adding the attribute to an element.
 }
 

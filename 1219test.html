@@ -17,10 +17,10 @@
     <a-assets>
       <img id="arrow" src="./pic/arrow.png">
       <a-assets-item id="arrowgltf" src="./assets/arrow/scene.gltf"></a-assets-item>
-  </a-assets>
+			<!-- <a-assets-item id="zsdlstair" src="./TenCCC/models/zsdlstair.gltf"></a-assets-item> -->
+  	</a-assets>
     
-
-  <a-image 
+		<a-image 
 			src="#arrow"
 			side="double"
 			scale="3 3 3"
@@ -32,7 +32,15 @@
 			scale="10 10 10"
 			rotation="-90 0 0">
 		</a-entity>
-  
+
+		<!-- <a-entity 							
+			gltf-model="#zsdlstair" 
+			scale="10 10 10"
+			rotation="0 0 0"
+			positioin="0 0 0">
+		</a-entity> -->
+
+		<a-camera rotation-reader></a-camera>
   </a-scene>
   
 </body>

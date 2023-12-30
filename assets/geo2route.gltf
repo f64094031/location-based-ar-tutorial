@@ -1,0 +1,122 @@
+{
+  "asset": {
+    "version": "2.0",
+    "generator": "Sketchup glTF Exporter v1.2.6 by Centaur"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "samplers": [
+    {
+    }
+  ],
+  "nodes": [
+    {
+      "name": "root",
+      "mesh": 0
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.2176,
+          0.2176,
+          0.2176,
+          1.0
+        ],
+        "metallicFactor": 0.1,
+        "roughnessFactor": 0.9
+      },
+      "name": "default material",
+      "doubleSided": true
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1
+          },
+          "indices": 2,
+          "mode": 4,
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 36,
+      "type": "VEC3",
+      "min": [
+        -52.78741571686574,
+        -1.4906625000000022,
+        -35.09837182198135
+      ],
+      "max": [
+        -4.491967818662364,
+        -1.3017499999999997,
+        3.36783809934694
+      ]
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 36,
+      "type": "VEC3",
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "max": [
+        0.9936309117940599,
+        1.0,
+        0.9936309117940599
+      ]
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5121,
+      "count": 60,
+      "type": "SCALAR"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 432,
+      "target": 34962,
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 432,
+      "byteLength": 432,
+      "target": 34962,
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 864,
+      "byteLength": 60,
+      "target": 34963
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "data:application/octet-stream;base64,UrNBwr6fpr+8ZAzC1og/wr6fpr+pildAUCZTwr6fpr+pildAMEswwr6fpr+C3/jBM76PwL6fpr/B7fDBM76PwL6fpr/m4NXB1og/wgfOvr+pildAUrNBwgfOvr+8ZAzCUCZTwgfOvr+pildAMEswwgfOvr+C3/jBM76PwAfOvr/B7fDBM76PwAfOvr/m4NXBM76PwL6fpr/B7fDBM76PwAfOvr/m4NXBM76PwL6fpr/m4NXBM76PwAfOvr/B7fDBM76PwL6fpr/B7fDBUrNBwgfOvr+8ZAzCM76PwAfOvr/B7fDBUrNBwr6fpr+8ZAzCUrNBwgfOvr+8ZAzCUCZTwr6fpr+pildAUCZTwgfOvr+pildAUrNBwr6fpr+8ZAzCUCZTwr6fpr+pildA1og/wgfOvr+pildAUCZTwgfOvr+pildA1og/wr6fpr+pildAMEswwr6fpr+C3/jB1og/wgfOvr+pildA1og/wr6fpr+pildAMEswwgfOvr+C3/jBMEswwr6fpr+C3/jBM76PwAfOvr/m4NXBMEswwgfOvr+C3/jBM76PwL6fpr/m4NXBdL4bigAAgL8yMY0kdL4bigAAgL8yMY0kdL4bigAAgL8yMY0kdL4bigAAgL8yMY0kdL4bigAAgL8yMY0kdL4bigAAgL8yMY0kdL4bCgAAgD8yMY2kdL4bCgAAgD8yMY2kdL4bCgAAgD8yMY2kdL4bCgAAgD8yMY2kdL4bCgAAgD8yMY2kdL4bCgAAgD8yMY2kAACAv8iVaAtAji8mAACAv8iVaAtAji8mAACAv8iVaAtAji8mAACAv8iVaAtAji8ms8bmvftKjCSYXn4/s8bmvftKjCSYXn4/s8bmvftKjCSYXn4/s8bmvftKjCSYXn4/mF5+P5OP/iKzxuY9mF5+P5OP/iKzxuY9mF5+P5OP/iKzxuY9mF5+P5OP/iKzxuY9MjGNJTIxjaQAAIC/MjGNJTIxjaQAAIC/MjGNJTIxjaQAAIC/MjGNJTIxjaQAAIC/a3N+v0Ym+KLB9uC9a3N+v0Ym+KLB9uC9a3N+v0Ym+KLB9uC9a3N+v0Ym+KLB9uC9wfbgPXhWjKRrc36/wfbgPXhWjKRrc36/wfbgPXhWjKRrc36/wfbgPXhWjKRrc36/AAECAQADAwAEAwQFBgcIBwYJBwkKCgkLDA0ODQwPEBESERATFBUWFRQXGBkaGRgbHB0eHRwfICEiISAj",
+      "byteLength": 924
+    }
+  ]
+}

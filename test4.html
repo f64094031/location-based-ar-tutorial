@@ -211,6 +211,8 @@
 						<a-assets-item id="nav" src="./assets/nav/nav4.gltf"></a-assets-item>
             <a-assets-item id="articuno" src="./assets/articuno/scene.gltf"></a-assets-item>
             <a-assets-item id="dragonite" src="./assets/dragonite/scene.gltf"></a-assets-item>
+            <a-assets-item id="geo2route" src="./assets/geo2route.gltf"></a-assets-item>
+            <a-assets-item id="arrow2" src="./assets/arrow/scene.gltf"></a-assets-item>
         </a-assets>
         
         <a-image src="#P1" rotation="0 180 0" scale="0.15 0.15 0.15" side="double" 
@@ -295,6 +297,21 @@
         side="double"
         gps-entity-place="longitude: 120.21970456668286; latitude:22.9981588815228;">
       </a-text>
+
+      <a-entity 
+          id="route1"
+          gltf-model="#geo2route"
+          gps-entity-place="longitude: 120.21924607166925; latitude: 22.998628958418376;"
+          scale="1 1 1">
+      </a-entity>
+
+      <a-entity 
+          id="geoarrow"
+          gltf-model="#arrow2"
+          gps-entity-place="longitude: 120.21900899567244; latitude: 22.998833223267965;"
+          scale="1 1 1"
+          rotation="90 0 0">
+      </a-entity>
 
         <a-entity 
           id="Home"
