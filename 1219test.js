@@ -69,6 +69,8 @@ function SetLocation(position, degree){
 			//(使用者緯度, AR內容經度)與(使用者緯度, 使用者經度)之距離E(m) 
 			//也就是說將AR內容平移置與使用者相同緯度，計算兩者間之距離E(假設兩點緯度差極小) 
 			let E = new LatLon(position.coords.latitude, entrancePosition[j].x).distanceTo(user);
+			console.log("N: " + N);
+			console.log("E: " + E);
 
 			if (entrancePosition[j].x-position.coords.longitude < 0){ E = -E;}
 			if (entrancePosition[j].y-position.coords.latitude < 0){ N = -N;}
