@@ -47,7 +47,7 @@ window.onload = function(){
 			let point = {x: data.x, y: data.y}; //用戶即時平面位置座標(判斷within使用)
 			let position = {coords:{longitude: data.x, latitude: data.y, altitude: userHeight}}; //用戶即時位置座標
 			console.log("longitude: " + position.coords.longitude + " latitude: " + position.coords.latitude + " altitude: " + position.coords.altitude);
-			document.getElementById("demo").innerHTML = "longitude: " + position.coords.longitude + " latitude: " + position.coords.latitude + " altitude: " + position.coords.altitude;
+			document.getElementById("demo").innerHTML = "longitude: " + position.coords.longitude + "<br> latitude: " + position.coords.latitude + "<br> altitude: " + position.coords.altitude;
 			SetLocation(position, theta_rad);
 		});
 	}, 1500);
