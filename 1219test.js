@@ -3,7 +3,7 @@ import LatLon from 'https://cdn.jsdelivr.net/npm/geodesy@2.3.0/latlon-ellipsoida
 
 //計算位置API
 const TrackAPI = "https://d0e4-140-116-47-115.ngrok-free.app/TrackAPI2.php";
-let entrancePosition = [{"x":120.2200649,"y":22.9987299,"z":31.634},{"x":120.2200666,"y":22.9987492,"z":31.634}];
+let entrancePosition = [{"x":120.2200520,"y":22.9987154,"z":27.033},{"x":120.2200649,"y":22.9987299,"z":31.634},{"x":120.2200666,"y":22.9987492,"z":31.634}];
 // 		<!--0.一樓大門: gps-entity-place="latitude: 22.9986416; longitude: 120.2199345;" position="0 26.728 0"-->
 // 		
 // 		<!--1.經緯廳: gps-entity-place="latitude: 22.9987154; longitude: 120.2200520;" position="0 27.033 0"-->
@@ -55,7 +55,7 @@ window.onload = function(){
 
 function SetLocation(position, degree){
 	//let target = document.querySelectorAll('a-'+type+'.'+classtype);
-	let target = document.querySelectorAll(".arrow");
+	let target = document.querySelectorAll(".classroom");
 	//console.log(target);
 
 	for(let j=0; j<2; j++){

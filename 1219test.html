@@ -121,29 +121,41 @@
     
 		<a-entity 
 			id="arrowentity1"
-			class="arrow"
+			class="classroom"
+			info="name:經緯聽; floor:1"	
+			src="#arrowgltf"
+			side="double"
+			scale="3 3 3"
+			rotation="-90 0 0">
+		</a-entity>
+
+		<a-entity 
+			id="arrowentity2"
+			class="classroom"
 			info="name:大一教室; floor:2"	
 			src="#arrowgltf"
 			side="double"
 			scale="3 3 3"
-			rotation=" 0 -90 90 ">
-		</a-entity>
-
-		<a-entity 
-			id="arrowentity2"	
-			class="arrow"			
-			info="name:電腦教室; floor:2"			
-			gltf-model="#arrowgltf" 
-			scale="6 6 6"
 			rotation="-90 0 0">
 		</a-entity>
 
-		<!-- <a-entity 							
-			gltf-model="#zsdlstair" 
-			scale="10 10 10"
-			rotation="0 0 0"
-			positioin="0 0 0">
+		<!-- <a-entity 
+			id="arrowentity3"	
+			class="classroom"			
+			info="name:電腦教室; floor:2"
+			gltf-model="#arrowgltf" 
+			scale="6 6 6"
+			rotation="-90 0 0">
 		</a-entity> -->
+		
+		<a-entity 
+			id="arrowentity3"	
+			class="classroom"			
+			info="name:電腦教室; floor:2"
+			geometry="primitive: sphere"
+			scale="2 2 2">
+		</a-entity>
+
 
 		<!--畫面中間的小圓點  -->
 		<a-camera id="camera" gps-camera rotation-reader><a-cursor></a-cursor></a-camera>
