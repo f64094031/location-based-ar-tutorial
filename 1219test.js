@@ -3,10 +3,20 @@ import LatLon from 'https://cdn.jsdelivr.net/npm/geodesy@2.3.0/latlon-ellipsoida
 
 //計算位置API
 const TrackAPI = "https://d0e4-140-116-47-115.ngrok-free.app/TrackAPI2.php";
-let entrancePosition = [{"x":120.2199345,"y":22.9986416,"z":26.728},{"x":120.2200520,"y":22.9987154,"z":27.033},
-				       					{"x":120.2200649,"y":22.9987299,"z":31.634},{"x":120.2200666,"y":22.9987492,"z":31.634},
-				       					{"x":120.2202121,"y":22.9987189,"z":31.634},{"x":120.2202138,"y":22.9987382,"z":31.634},
-												{"x":120.2200666,"y":22.9987492,"z":36.148}];
+let entrancePosition = [{"x":120.2200649,"y":22.9987299,"z":31.634},{"x":120.2200666,"y":22.9987492,"z":31.634}];
+// 		<!--0.一樓大門: gps-entity-place="latitude: 22.9986416; longitude: 120.2199345;" position="0 26.728 0"-->
+// 		
+// 		<!--1.經緯廳: gps-entity-place="latitude: 22.9987154; longitude: 120.2200520;" position="0 27.033 0"-->
+// 		
+// 		<!--2.大一教室: gps-entity-place="latitude: 22.9987299; longitude: 120.2200649;" position="0 31.634 0"-->
+// 		
+// 		<!--3.電腦教室: gps-entity-place="latitude: 22.9987492; longitude: 120.2200666;" position="0 31.634 0"-->
+// 		
+// 		<!--4.圖書室: gps-entity-place="latitude: 22.9987189; longitude: 120.2202121;" position="0 31.634 0"-->
+// 		
+// 		<!--5.55210實驗室: gps-entity-place="latitude: 22.9987382; longitude: 120.2202138;" position="0 31.634 0"-->
+// 		
+// 		<!--6.55316實驗室: gps-entity-place="latitude: 22.9987492; longitude: 120.2200666;" position="0 36.148 0"-->
 
 //window.onload
 //window.onload() 方法用于在网页加载完毕后立刻执行的操作，即当 HTML 文档加载完毕后，立刻执行某个方法。
@@ -44,30 +54,35 @@ window.onload = function(){
 }
 
 function SetLocation(position, degree){
-	let target = document.getElementById("arrow");
-	let H = entrancePosition[0].x - position.coords.altitude;
-	let user = new LatLon(position.coords.latitude, position.coords.longitude);
+	//let target = document.querySelectorAll('a-'+type+'.'+classtype);
+	let target = document.querySelectorAll(".arrow");
+	//console.log(target);
 
-	//(AR內容緯度, 使用者經度)與(使用者緯度, 使用者經度)之距離N(m) 
-	//也就是說將AR內容平移置與使用者相同經度，計算兩者間之距離N
-	let N = new LatLon(entrancePosition[0].y, position.coords.longitude).distanceTo(user);
-					
-	//(使用者緯度, AR內容經度)與(使用者緯度, 使用者經度)之距離E(m) 
-	//也就是說將AR內容平移置與使用者相同緯度，計算兩者間之距離E(假設兩點緯度差極小) 
-	let E = new LatLon(position.coords.latitude, entrancePosition[0].x).distanceTo(user);
+	for(let j=0; j<2; j++){
+			let H = entrancePosition[j].x - position.coords.altitude;
+			let user = new LatLon(position.coords.latitude, position.coords.longitude);
 
-	if (entrancePosition[0].x-position.coords.longitude < 0){ E = -E;}
-	if (entrancePosition[0].y-position.coords.latitude < 0){ N = -N;}
+			//(AR內容緯度, 使用者經度)與(使用者緯度, 使用者經度)之距離N(m) 
+			//也就是說將AR內容平移置與使用者相同經度，計算兩者間之距離N
+			let N = new LatLon(entrancePosition[j].y, position.coords.longitude).distanceTo(user);
+							
+			//(使用者緯度, AR內容經度)與(使用者緯度, 使用者經度)之距離E(m) 
+			//也就是說將AR內容平移置與使用者相同緯度，計算兩者間之距離E(假設兩點緯度差極小) 
+			let E = new LatLon(position.coords.latitude, entrancePosition[0].x).distanceTo(user);
 
-	let z = Math.cos(degree)*E + Math.sin(degree)*N;
-	let x	= Math.cos(degree)*N - Math.sin(degree)*E; //換算至手機相機局部坐標系中(公尺)
+			if (entrancePosition[j].x-position.coords.longitude < 0){ E = -E;}
+			if (entrancePosition[j].y-position.coords.latitude < 0){ N = -N;}
 
-	let target_att = document.createAttribute('position');
-	target_att.value = x+" "+H+" "+z;
-	target.setAttributeNode(target_att);
-// 	The Difference Between setAttribute() and setAttributeNode()
-// 	The setAttribute() method replaces attribute values.
-// 	The setAttributeNode() method replaces Attribute objects.
-// 	You must create an Attr object and set the Attr value before adding the attribute to an element.
+			let z = Math.cos(degree)*E + Math.sin(degree)*N;
+			let x	= Math.cos(degree)*N - Math.sin(degree)*E; //換算至手機相機局部坐標系中(公尺)
+
+			let target_att = document.createAttribute('position');
+			target_att.value = x+" "+H+" "+z;
+			target[j].setAttributeNode(target_att);
+			console.log(target[j]);
+		// 	The Difference Between setAttribute() and setAttributeNode()
+		// 	The setAttribute() method replaces attribute values.
+		// 	The setAttributeNode() method replaces Attribute objects.
+		// 	You must create an Attr object and set the Attr value before adding the attribute to an element.
+	}
 }
-

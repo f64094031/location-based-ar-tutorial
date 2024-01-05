@@ -14,21 +14,125 @@
 	<p id="demo">demo</p>
 </head>
 <body>
+	<script>
+		function settext(){
+			AFRAME.registerComponent('info', {
+				schema: {
+					name: {type: "string", default: "non"}, 
+					floor: {type: "string", default: "0"},
+				},
+				init: function () {
+					let data = this.data;
+				
+					//加入event listener
+					this.el.addEventListener('click', function(obj){
+						//列出data屬性
+						console.log(data);
+						//列出element背後的資料
+						console.log(obj);
+						let oldPosition = obj.srcElement.getAttribute('position');
+						console.log(oldPosition);
+						//改變"資料"
+						//$("try")[0].innerHTML = "成功"; (使用jQuery寫法)
+						//document.getElementById("try").innerHTML = "success!";
+
+						//將資訊顯示至板子上
+						const infoText = {
+							name: "Name: ",
+							floor: "Floor: ",
+						};
+							let att = obj.srcElement;
+							const infoArr = [];
+							let attPos = att.getAttribute("position");
+							infoText.name +=  data.name;
+							infoArr.push(infoText.name);
+							infoText.floor += data.floor;
+							infoArr.push(infoText.floor);
+
+							if (document.querySelector(".tarInfo")) 
+							document.querySelector(".tarInfo").remove();
+							console.log(infoText);
+
+							createInfoBoard(attPos, infoArr);
+						});
+					
+				},
+				update: function () {},
+				tick: function () {},
+				remove: function () {},
+				pause: function () {},
+				play: function () {}
+			});
+		}
+
+		function createInfoBoard(itemPos, textArr) {
+			let userRot = getCamRot();
+			let enti = document.createElement("a-entity");
+			document.querySelector("a-scene").appendChild(enti);
+			enti.setAttribute("class", "tarInfo");
+			enti.setAttribute("color", "white");
+			enti.setAttribute("position", {
+				x: itemPos["x"] - 10*Math.cos(Math.PI*userRot[1]/180),
+				y: itemPos["y"] + 10,
+				z: itemPos["z"] + 10*Math.sin(Math.PI*userRot[1]/180),
+			});
+			
+			enti.setAttribute("rotation", { x: 0, y: userRot[1], z: 0 });
+			let box = document.createElement("a-box");
+			document.querySelector(".tarInfo").appendChild(box);
+			box.setAttribute("color", "black");
+			box.setAttribute("height", 20);
+			box.setAttribute("width", 30);
+			box.setAttribute("depth", "0.025");
+
+			let textPrefix = "anchor: center; width: 2; color: pink; value: ";
+			let text = document.createElement("a-text");
+			for (let item of textArr) {
+				textPrefix += item + "\n";
+			}
+			document.querySelector(".tarInfo").appendChild(text);
+			text.setAttribute("position", { x: 0, y: 0, z: 0.1});
+			text.setAttribute("width", 30);
+			text.setAttribute("text", textPrefix);
+			text.setAttribute("wrap-count", 20);
+		}
+
+		function getCamRot() {
+			// return an array contains rotation of x, y, z in order
+			const rotation = document.querySelector("#camera").getAttribute("rotation");
+			const rotarr = [];
+			console.log(rotation);
+			for (let [key, val] of Object.entries(rotation)) {
+				rotarr.push(val);
+			}
+
+			return rotarr;
+		}
+	</script>
+
+
+
   <a-scene>
     <a-assets>
-      <img id="arrow" src="./pic/arrow.png">
+      <img id="arrowpng" src="./pic/arrow.png">
       <a-assets-item id="arrowgltf" src="./assets/arrow/scene.gltf"></a-assets-item>
 			<!-- <a-assets-item id="zsdlstair" src="./TenCCC/models/zsdlstair.gltf"></a-assets-item> -->
   	</a-assets>
     
-		<a-image 
-			src="#arrow"
+		<a-entity 
+			id="arrowentity1"
+			class="arrow"
+			info="name:大一教室; floor:2"	
+			src="#arrowgltf"
 			side="double"
 			scale="3 3 3"
 			rotation=" 0 -90 90 ">
-		</a-image>
+		</a-entity>
 
-		<a-entity 							
+		<a-entity 
+			id="arrowentity2"	
+			class="arrow"			
+			info="name:電腦教室; floor:2"			
 			gltf-model="#arrowgltf" 
 			scale="6 6 6"
 			rotation="-90 0 0">
@@ -41,8 +145,15 @@
 			positioin="0 0 0">
 		</a-entity> -->
 
-		<a-camera rotation-reader></a-camera>
+		<!--畫面中間的小圓點  -->
+		<a-camera id="camera" gps-camera rotation-reader><a-cursor></a-cursor></a-camera>
   </a-scene>
   
+	<script>
+		settext();
+		let A = document.getElementById("arrowentity1");
+		console.log(A.name);
+	</script>
+	
 </body>
 </html>
