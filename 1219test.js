@@ -29,29 +29,38 @@ window.onload = function(){
 		let head; 
 		//     判斷是否為 iOS 裝置
 		if(event.webkitCompassHeading) {
+			//webkitCompassHeading表示「手機與地球正北方的夾角」，而 Android 則直接用 alpha 即可。
 			head = event.webkitCompassHeading; // iOS 裝置必須使用 event.webkitCompassHeading
 		}
 		else {
 			head = event.alpha;
 		}
-		if (head == undefined){ head = 0; } //無羅盤資料則預設朝向正北
+
+		document.write(head);
+		document.write("<br/>");
+		document.write(event.beta);
+		document.write("<br/>");
+		document.write(event.gamma);
+
 		let theta = -(head-180-90); //N軸轉向手機x軸向(朝右)的逆時針角度
 		theta_rad = theta * Math.PI /180; //換成弧度
 	}, {once: true}); //取得網頁就緒當下之方位角，且不隨每次的位置更新重複執行
 
 
-	setInterval(function() {
-		//處理位置之計算
-		//let height = 31.634; //假設固定於2樓移動
-		$.getJSON( TrackAPI, function (data){
-			let userHeight = data.z + 26.728;
-			let point = {x: data.x, y: data.y}; //用戶即時平面位置座標(判斷within使用)
-			let position = {coords:{longitude: data.x, latitude: data.y, altitude: userHeight}}; //用戶即時位置座標
-			console.log("longitude: " + position.coords.longitude + " latitude: " + position.coords.latitude + " altitude: " + position.coords.altitude);
-			document.getElementById("demo").innerHTML = "longitude: " + position.coords.longitude + "<br> latitude: " + position.coords.latitude + "<br> altitude: " + position.coords.altitude;
-			SetLocation(position, theta_rad);
-		});
-	}, 1500);
+	if(head){
+		setInterval(function() {
+			//處理位置之計算
+			//let height = 31.634; //假設固定於2樓移動
+			$.getJSON( TrackAPI, function (data){
+				let userHeight = data.z + 26.728;
+				let point = {x: data.x, y: data.y}; //用戶即時平面位置座標(判斷within使用)
+				let position = {coords:{longitude: data.x, latitude: data.y, altitude: userHeight}}; //用戶即時位置座標
+				console.log("longitude: " + position.coords.longitude + " latitude: " + position.coords.latitude + " altitude: " + position.coords.altitude);
+				document.getElementById("demo").innerHTML = "longitude: " + position.coords.longitude + "<br> latitude: " + position.coords.latitude + "<br> altitude: " + position.coords.altitude;
+				SetLocation(position, theta_rad);
+			});
+		}, 1500);
+	}
 }
 
 function SetLocation(position, degree){

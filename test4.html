@@ -66,8 +66,9 @@
             infoText.height += data.height;
             infoArr.push(infoText.height);
 
-            if (document.querySelector(".tarInfo")) 
-            document.querySelector(".tarInfo").remove();
+            if (document.querySelector(".tarInfo")){
+              document.querySelector(".tarInfo").remove();
+            }
             console.log(infoText);
 
             createInfoBoard(attPos, infoArr);

@@ -11,6 +11,7 @@
 			This makes it easier to maintain a code-base.
 			Modules are imported from external files with the import statement. -->
   <script type="module" src="./1219test.js"></script>
+
 	<p id="demo">demo</p>
 </head>
 <body>
@@ -49,11 +50,34 @@
 							infoText.floor += data.floor;
 							infoArr.push(infoText.floor);
 
-							if (document.querySelector(".tarInfo")) 
-							document.querySelector(".tarInfo").remove();
+	
+							if (document.querySelector(".tarInfo")){
+								document.querySelector(".tarInfo").remove();
+							}
 							console.log(infoText);
 
-							createInfoBoard(attPos, infoArr);
+							//GM課程
+							//第一種讀取方式
+							// fetch('/112_2測量系課程.json')
+							// 		.then(function (response) {
+							// 				return response.json();
+							// 		})
+							// 		.then(function (result) {
+							// 			var GMcourse = result;
+							// 			console.log(GMcourse);
+							// 			createInfoBoard(attPos, infoArr, GMcourse);
+							// 		});
+							//第二種讀取方式		
+							var requestURL = '/112_2測量系課程.json';
+							var request = new XMLHttpRequest();
+							request.open("GET", requestURL);
+							request.responseType = 'json';
+							request.send();
+							request.onload = function() {
+							  	var GMcourse = request.response;
+									console.log(GMcourse);
+									createInfoBoard(attPos, infoArr, GMcourse);
+							}
 						});
 					
 				},
@@ -65,7 +89,7 @@
 			});
 		}
 
-		function createInfoBoard(itemPos, textArr) {
+		function createInfoBoard(itemPos, textArr, course) {
 			let userRot = getCamRot();
 			let enti = document.createElement("a-entity");
 			document.querySelector("a-scene").appendChild(enti);
@@ -76,7 +100,7 @@
 				y: itemPos["y"] + 10,
 				z: itemPos["z"] + 10*Math.sin(Math.PI*userRot[1]/180),
 			});
-			
+
 			enti.setAttribute("rotation", { x: 0, y: userRot[1], z: 0 });
 			let box = document.createElement("a-box");
 			document.querySelector(".tarInfo").appendChild(box);
@@ -84,6 +108,24 @@
 			box.setAttribute("height", 20);
 			box.setAttribute("width", 30);
 			box.setAttribute("depth", "0.025");
+
+			let box1 = document.createElement("a-box");
+			document.querySelector("a-box").appendChild(box1);
+			box1.setAttribute("id", "nextBoard");
+			box1.setAttribute("position", "12 -8 0.1");
+			box1.setAttribute("color", "red");
+			box1.setAttribute("height", 4);
+			box1.setAttribute("width", 6);
+
+			//nextBoard上的字
+			let textPrefix1 = "anchor: center; baseline: center; width: 6; color: white; value: next";	//anchor: Horizontal positioning (left, center, right, align). baseline: Vertical positioning (top, center, bottom).
+			//textPrefix1 += "next";
+			let text1 = document.createElement("a-text");
+			document.querySelector("a-box#nextBoard").appendChild(text1);
+			//document.getElementById("nextBoard").appendChild(text1);
+			text1.setAttribute("position", { x: 2, y: 0, z: 0.6});
+			text1.setAttribute("text", textPrefix1);
+			text1.setAttribute("wrap-count", 10);	//文字換行之前的字元數（越少自越大 越多字越少）	default=40
 
 			let textPrefix = "anchor: center; width: 2; color: pink; value: ";
 			let text = document.createElement("a-text");
@@ -95,6 +137,22 @@
 			text.setAttribute("width", 30);
 			text.setAttribute("text", textPrefix);
 			text.setAttribute("wrap-count", 20);
+
+			//點nextBoard顯示課程
+			document.getElementById("nextBoard").addEventListener("click", display);
+			let i=0;
+			function display() {
+				if(i == course.length){i=0;}
+				console.log(course[i]);
+				text.setAttribute("position", { x: 0, y: 0, z: 0.2});
+				text.setAttribute("width", 30);	
+				//不能顯示中文
+				let classes = "Class Code:" + course[i].課程碼 + "\nYear:" + course[i].年級 + "\nGroup:" + course[i].組別 + "\nCategory:" + course[i].類別 + "\nCourse Name:" + course[i].科目名稱; //課程碼	年級	組別	類別	科目名稱	備註  限選條件	學分	選必修	教師姓名 *:主負責老師	星期	開始時間	結束時間	授課地點
+				text.setAttribute("value", classes);
+
+				text.setAttribute("wrap-count", 20);
+				i++;
+			}
 		}
 
 		function getCamRot() {
@@ -120,16 +178,14 @@
   	</a-assets>
     
 		<a-entity 
-			id="arrowentity1"
 			class="classroom"
 			info="name:經緯聽; floor:1"	
 			gltf-model="#arrowgltf"
-			scale="1 1 1"
+			scale="3 3 3"
 			rotation="-90 0 0">
 		</a-entity>
 
 		<a-entity 
-			id="arrowentity2"
 			class="classroom"
 			info="name:大一教室; floor:2"	
 			gltf-model="#arrowgltf"
@@ -147,12 +203,11 @@
 			rotation="-90 0 0">
 		</a-entity> -->
 		
-		<a-entity 
-			id="arrowentity3"	
+		<a-entity
 			class="classroom"			
 			info="name:電腦教室; floor:2"
 			geometry="primitive: sphere"
-			scale="2 2 2"
+			scale="0.1 0.1 0.1"
 			material="color: green">
 		</a-entity>
 
@@ -163,8 +218,6 @@
   
 	<script>
 		settext();
-		let A = document.getElementById("arrowentity1");
-		console.log(A.name);
 	</script>
 	
 </body>
