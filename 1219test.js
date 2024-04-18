@@ -23,7 +23,7 @@ let entrancePosition = [{"x":120.2200520,"y":22.9987154,"z":27.033},{"x":120.220
 //window.onload() 通常用于 <body> 元素，在页面完全载入后(包括图片、css文件等等)执行脚本代码。
 window.onload = function(){
 	
-	//陀螺儀監聽	//獲取羅盤資料z	//手機-z軸向(朝前)相對於N軸向之順時針角度
+	//陀螺儀監聽	//獲取羅盤資料z	//手機z軸向(朝前)相對於N軸向之順時針角度
 	let theta_rad;
 	window.addEventListener('deviceorientation', function(event) { //get azimuth 處理方位角
 		let head; 
@@ -42,9 +42,10 @@ window.onload = function(){
 		document.write("<br/>");
 		document.write(event.gamma);
 
-		let theta = -(head-180-90); //N軸轉向手機x軸向(朝右)的逆時針角度
+		//let theta = -(head-180-90); //N軸轉向手機x軸向(朝右)的逆時針角度
+		let theta = -head;
 		theta_rad = theta * Math.PI /180; //換成弧度
-	}, {once: true}); //取得網頁就緒當下之方位角，且不隨每次的位置更新重複執行
+	}, 1500); //取得網頁就緒當下之方位角，且不隨每次的位置更新重複執行
 
 
 	if(head){
@@ -86,7 +87,7 @@ function SetLocation(position, degree){
 			if (entrancePosition[j].y-position.coords.latitude < 0){ N = -N;}
 
 			let z = Math.cos(degree)*E + Math.sin(degree)*N;
-			let x	= Math.cos(degree)*N - Math.sin(degree)*E; //換算至手機相機局部坐標系中(公尺)
+			let x	= Math.cos(degree)*N - Math.sin(degree)*E; //換算至手機相機局部坐標系中(公尺) //七參數轉換，Y軸旋轉量=degree, 尺度因子=1, 平移量X=0, Y=0, Z=H
 
 			let target_att = document.createAttribute('position');
 			target_att.value = x+" "+H+" "+z;
