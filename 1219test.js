@@ -87,7 +87,7 @@ function SetLocation(position, degree){
 			if (entrancePosition[j].y-position.coords.latitude < 0){ N = -N;}
 
 			let z = Math.cos(degree)*E + Math.sin(degree)*N;
-			let x	= Math.cos(degree)*N - Math.sin(degree)*E; //換算至手機相機局部坐標系中(公尺) //七參數轉換，Y軸旋轉量=degree, 尺度因子=1, 平移量X=0, Y=0, Z=H
+			let x	= Math.cos(degree)*N - Math.sin(degree)*E; //換算至手機相機局部坐標系中(公尺) //正交轉換(尺度與形狀保持不變)Y軸旋轉量=degree, 平移量X=0, Y=0, Z=H
 
 			let target_att = document.createAttribute('position');
 			target_att.value = x+" "+H+" "+z;
